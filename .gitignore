@@ -1,0 +1,21 @@
+# Windows image file caches
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Mac crap
+.DS_Store
+/nbproject/private/
+
+*~
+thumbs.db
+.buildpath
+.project
+.idea/
+.settings/
+.git/
+vendor/
+composer.phar
+app/cache
+app/logs
