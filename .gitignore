@@ -15,7 +15,12 @@ thumbs.db
 .idea/
 .settings/
 .git/
-vendor/
+
+# Symfony 2.x
 composer.phar
-app/cache
-app/logs
+/web/bundles/
+/app/bootstrap*
+/app/cache/*
+/app/logs/*
+/vendor/
+/app/config/parameters.ini
