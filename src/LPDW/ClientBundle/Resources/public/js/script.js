@@ -20,7 +20,7 @@ $(document).ready(function()
  */
 function maPosition(position)
 {
-    // envoi au controller les données
+    // envoie au controller les données
     $.ajax({
         // url
         url: Routing.generate('lpdw_position', true),
@@ -30,8 +30,9 @@ function maPosition(position)
             "lat" : position.coords.latitude,
             "lng" : position.coords.longitude
         },
-        success: function(data) {
-            document.getElementById("infoposition").innerHTML = data;
+        success: function(data)
+        {
+            document.getElementById("infosposition").innerHTML = data;
         }
     });
 }
