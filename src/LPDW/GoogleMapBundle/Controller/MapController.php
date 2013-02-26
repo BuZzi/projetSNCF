@@ -33,8 +33,8 @@ class MapController extends Controller
 
         $map->setBound(-2.1, -3.9, 2.6, 1.4, true, true);
 
-        $map->setMapOption('mapTypeId', MapTypeId::ROADMAP);
-        $map->setMapOption('mapTypeId', 'roadmap');
+        $map->setMapOption('mapTypeId', MapTypeId::HYBRID);
+        $map->setMapOption('mapTypeId', 'terrain');
 
         $map->setMapOption('disableDefaultUI', true);
         $map->setMapOption('disableDoubleClickZoom', true);
