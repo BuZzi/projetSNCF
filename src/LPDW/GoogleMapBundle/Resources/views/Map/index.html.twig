@@ -1,5 +1,12 @@
-{{ google_map_container(map) }}
+{% extends '::base.html.twig' %}
 
-test
 
-{{ google_map_js(map) }}
+{% block map %}
+    {{ google_map_container(map) }}
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ google_map_js(map) }}
+{% endblock %}
