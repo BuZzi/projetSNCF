@@ -19,7 +19,7 @@
         "jms/security-extra-bundle": "1.2.*",
         "jms/di-extra-bundle": "1.1.*",
         "kriswallsmith/assetic": "1.1.*@dev",
-        "egeloen/google-map": "dev-master",
+        "egeloen/google-map-bundle": "*",
         "bmatzner/foundation-bundle": "*",
         "thetwelvelabs/foursquare": "0.1.*@dev",
         "friendsofsymfony/jsrouting-bundle": "1.1.*"

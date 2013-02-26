@@ -12,7 +12,7 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/hello/{name}")
-     * @Template()
+     * @Template("LPDWClientBundle:Default:index.html.twig")
      */
     public function indexAction($name)
     {
@@ -29,6 +29,5 @@ class DefaultController extends Controller
         $lng = $request->request->get('lng');
         return array('latitude' => $lat, 'longitude' =>$lng);
     }
-
 
 }
