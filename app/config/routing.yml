@@ -1,3 +1,18 @@
+lpdw_google_map:
+    resource: "@LPDWGoogleMapBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+lpdw_foursquare:
+    resource: "@LPDWFoursquareBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+lpdw_sncf:
+    resource: "@LPDWSncfBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 lpdw_client:
     resource: "@LPDWClientBundle/Controller/"
     type:     annotation

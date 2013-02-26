@@ -21,6 +21,9 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Bmatzner\FoundationBundle\BmatznerFoundationBundle(),
             new LPDW\ClientBundle\LPDWClientBundle(),
+            new LPDW\SncfBundle\LPDWSncfBundle(),
+            new LPDW\FoursquareBundle\LPDWFoursquareBundle(),
+            new LPDW\GoogleMapBundle\LPDWGoogleMapBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
