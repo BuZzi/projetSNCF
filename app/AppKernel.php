@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new LPDW\SncfBundle\LPDWSncfBundle(),
             new LPDW\FoursquareBundle\LPDWFoursquareBundle(),
             new LPDW\GoogleMapBundle\LPDWGoogleMapBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

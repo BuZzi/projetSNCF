@@ -21,7 +21,8 @@
         "kriswallsmith/assetic": "1.1.*@dev",
         "egeloen/google-map": "dev-master",
         "bmatzner/foundation-bundle": "*",
-        "thetwelvelabs/foursquare": "0.1.*@dev"
+        "thetwelvelabs/foursquare": "0.1.*@dev",
+        "friendsofsymfony/jsrouting-bundle": "1.1.*"
     },
     "scripts": {
         "post-install-cmd": [

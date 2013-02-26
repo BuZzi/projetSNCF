@@ -3,5 +3,14 @@
 {% block body %}
     Hello {{ name }}!
 
+    <div id="infoposition"></div>
+    <a href="{{ path('lpdw_position') }}">Accueil</a>
+{% endblock %}
 
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@LPDWClientBundle/Resources/public/js/*' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
