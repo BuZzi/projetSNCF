@@ -22,6 +22,7 @@
         "egeloen/google-map-bundle": "*",
         "bmatzner/foundation-bundle": "*",
         "friendsofsymfony/jsrouting-bundle": "1.1.*"
+
     },
     "scripts": {
         "post-install-cmd": [
