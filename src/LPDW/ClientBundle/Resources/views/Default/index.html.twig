@@ -2,13 +2,13 @@
 
 {% block body %}
     <!-- Div qui contient les géolocalisations de l'utilisateur (pas affiché à l'utilisateur) -->
-    <div id="infosposition"></div>
+<div id="infosposition"></div>
 {% endblock %}
 
 
 {% block javascripts %}
     {{ parent() }}
     {% javascripts '@LPDWClientBundle/Resources/public/js/*' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
+    <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}
