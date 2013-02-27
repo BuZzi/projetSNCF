@@ -5,11 +5,12 @@ $(document).ready(function()
     {
         // L’API est disponible
         // Appel de la fonction qui envoie la position au controller
-        navigator.geolocation.getCurrentPosition(maPosition);
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
     }
     else
     {
-        // Pas de support, proposer une alternative ?
+        // Pas de support de l'HTML
+        alert("Votre navigateur ne prend pas en compte la géolocalisation HTML5");
     }
 });
 
@@ -18,7 +19,7 @@ $(document).ready(function()
  * @param position
  * @return void
  */
-function maPosition(position)
+function successCallback(position)
 {
     // envoie au controller les données
     $.ajax({
@@ -32,6 +33,43 @@ function maPosition(position)
         },
         success: function(data)
         {
+            document.getElementById("infosposition").innerHTML = data;
+        }
+    });
+}
+
+/**
+ * Fonction qui envoie une notification comme quoi l'utilisateur ne communique pas sa position
+ * @param void
+ * @return void
+ */
+function errorCallback(error)
+{
+    var errorTxt;
+    switch(error.code)
+    {
+        case error.PERMISSION_DENIED:
+            errorTxt = "Vous n'avez pas autorisé l'accès à votre position ";
+            break;
+        case error.POSITION_UNAVAILABLE:
+            errorTxt = "Votre emplacement n'a pas pu être déterminé";
+            break;
+        case error.TIMEOUT:
+            errorTxt = "Le service n'a pas répondu à temps";
+            break;
+    }
+    // envoie au controller les données
+    $.ajax({
+        // url
+        url: Routing.generate('lpdw_formulaire', true),
+        type: "POST",
+        data:
+        {
+            "errorTxt" : errorTxt
+        },
+        success: function(data)
+        {
+            // affiche les données recus du controller
             document.getElementById("infosposition").innerHTML = data;
         }
     });

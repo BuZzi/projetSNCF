@@ -21,7 +21,7 @@ class PositionController extends Controller
 
     /**
      * @Route ("/position", name="lpdw_position", options={"expose"=true})
-     * @Template("LPDWClientBundle:Client:index.html.twig")
+     * @Template("LPDWClientBundle:Client:position.html.twig")
      */
     public function positionAction(Request $request)
     {
