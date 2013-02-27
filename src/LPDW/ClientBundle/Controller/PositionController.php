@@ -58,20 +58,22 @@ class PositionController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT name, $_sFormule AS dist FROM station WHERE $_sFormule <= 10 ORDER by dist ASC");
+        $statement = $connection->prepare("SELECT id, $_sFormule AS dist FROM station WHERE $_sFormule <= 10 ORDER by dist ASC");
         $statement->execute();
         $_aListStations = $statement->fetchAll();
+        //var_dump($_aListStations);
 
-
-        $product = $this->getDoctrine()
-            ->getRepository('AcmeStoreBundle:Product')
-            ->find($id);
-
-        if (!$product) {
-            throw $this->createNotFoundException('Produit non trouvé avec id '.$id);
+        if (!$_aListStations) {
+            throw $this->createNotFoundException('Pas de gares à l\'horizon');
         }
 
-        var_dump($_aListStations);
+        foreach($_aListStations as $_iKey=> &$_aStation){
+            $_aStation = $this->getDoctrine()
+                ->getRepository('LPDWSncfBundle:Station')
+                ->find($_aStation['id'])
+            ;
+        }
+
         return array(
                 'latitude' => $_mLatitude,
                 'longitude' => $_mLongitude,
