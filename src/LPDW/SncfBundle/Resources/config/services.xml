@@ -17,4 +17,19 @@
         </service>
     </services>
     -->
+
+    <parameters>
+        <parameter key="lpdw_sncf.station_manager.class">LPDW\SncfBundle\Manager\StationManager</parameter>
+    </parameters>
+
+    <services>
+        <service id="lpdw_sncf.station_manager" class="%lpdw_sncf.station_manager.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+    </services>
+
+
+
 </container>
+
+

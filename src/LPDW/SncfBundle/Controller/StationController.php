@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by ardietr
+ * Date: 27/02/13
+ * Time: 15:47
+ */
+
 
 namespace LPDW\SncfBundle\Controller;
 
@@ -7,12 +13,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 
-class DefaultController extends Controller
+
+class StationController extends Controller
 {
 
-    public function listAction(Request $_oRequest)
+    public function listAction($_mLatitude, $_mLongitude)
     {
-        return new Response('Liste des gares');
+
     }
+
+
 
 }

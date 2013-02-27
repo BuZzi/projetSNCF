@@ -53,26 +53,22 @@ class PositionController extends Controller
         $_mLatitude = $request->request->get('lat');
         $_mLongitude = $request->request->get('lng');
 
-        $_sFormule = "(6366 * acos(cos(radians($_mLatitude))*cos(radians(`latitude`))*cos(radians(`longitude`) -radians($_mLongitude))+sin(radians($_mLatitude))*sin(radians(`latitude`))))";
+        $_aListStations = $this->get('lpdw_sncf.station_manager')->getAroundStation($_mLatitude, $_mLongitude);
 
-        $em = $this->getDoctrine()->getManager();
 
-        $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT id, $_sFormule AS dist FROM station WHERE $_sFormule <= 10 ORDER by dist ASC");
-        $statement->execute();
-        $_aListStations = $statement->fetchAll();
-        //var_dump($_aListStations);
 
         if (!$_aListStations) {
             throw $this->createNotFoundException('Pas de gares à l\'horizon');
         }
 
+
         foreach($_aListStations as $_iKey=> &$_aStation){
             $_aStation = $this->getDoctrine()
                 ->getRepository('LPDWSncfBundle:Station')
-                ->find($_aStation['id'])
-            ;
+                ->find($_aStation['id']);
         }
+
+        var_dump($_aListStations);
 
         return array(
                 'latitude' => $_mLatitude,
