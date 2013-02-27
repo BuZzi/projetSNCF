@@ -8,7 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
-use LPDW\SncfBundle\Entity\Station;
+use LPDW\SncfBundle\Entity\Station,
+    LPDW\ClientBundle\Form\SearchStationType;
 
 class PositionController extends Controller
 {
@@ -16,9 +17,31 @@ class PositionController extends Controller
      * @Route("/accueil")
      * @Template("LPDWClientBundle:Default:index.html.twig")
      */
-    public function indexAction()
+    public function indexAction(Request $_oRequest)
     {
-        return array();
+        $_oStation = new Station();
+        $_oForm = $this->createForm(new SearchStationType(), $_oStation);
+
+        if($_oRequest->isMethod('POST'))
+        {
+            $_oForm->bind($_oRequest);
+
+            if($_oForm->isValid())
+            {
+                $_oStation = $_oForm->getData();
+
+                // checker le nom rentré par l'utilisateur dans la base
+                $em = $this->getDoctrine()->getManager();
+
+                // redirect
+                return array();
+            }
+        }
+
+        // Render the form in the view
+        return array(
+            'form' => $_oForm->createView(),
+        );
     }
 
     /**

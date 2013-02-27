@@ -1,8 +1,19 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
+
+    <a class="button" id="findMe" href="#">Trouve Moi</a>
     <!-- Div qui contient les géolocalisations de l'utilisateur (pas affiché à l'utilisateur) -->
-<div id="infosposition"></div>
+    <div id="infosposition"></div>
+
+    <p>Ou utilise le formulaire suivant pour trouver une gare</p>
+
+    Formulaire :
+    <form action="#" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input type="submit" />
+    </form>
+
 {% endblock %}
 
 

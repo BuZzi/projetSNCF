@@ -1,17 +1,20 @@
 $(document).ready(function()
 {
-    // Si le navigateur supporte la géolocalisation
-    if(navigator.geolocation)
-    {
-        // L’API est disponible
-        // Appel de la fonction qui envoie la position au controller
-        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-    }
-    else
-    {
-        // Pas de support de l'HTML
-        alert("Votre navigateur ne prend pas en compte la géolocalisation HTML5");
-    }
+    // Lors du clic sur le bouton "trouve moi"
+    $('#findMe').click(function(){
+        // Si le navigateur supporte la géolocalisation
+        if(navigator.geolocation)
+        {
+            // L’API est disponible
+            // Appel de la fonction qui envoie la position au controller
+            navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+        }
+        else
+        {
+            // Pas de support de l'HTML
+            alert("Votre navigateur ne prend pas en compte la géolocalisation HTML5");
+        }
+    });
 });
 
 /**
@@ -39,7 +42,7 @@ function successCallback(position)
 }
 
 /**
- * Fonction qui envoie une notification comme quoi l'utilisateur ne communique pas sa position
+ * Fonction qui envoie une notification d'erreur au controller
  * @param void
  * @return void
  */
