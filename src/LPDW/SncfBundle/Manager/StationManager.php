@@ -27,31 +27,33 @@ class StationManager extends BaseManager
         //return $this->em->getRepository('LPDWSncfBundle:Station');
     }
 
+    /**
+     * Fonction qui check dans la base les stations les plus proches
+     * de la position géographique passée en paramètre (couple latitude-longitude)
+     *
+     * @param $_mLatitude
+     * @param $_mLongitude
+     * @return array $_aListStations (id+distance par rapport au point passé en paramètre)
+     */
     public function getAroundStation($_mLatitude, $_mLongitude)
     {
-        var_dump($_mLatitude);
-        var_dump($_mLongitude);
+
+        // Formule qui trouve les points alentours en fonction du couple latitude-longitude
         $_sFormule = "(6366 * acos(cos(radians($_mLatitude))*cos(radians(`latitude`))*cos(radians(`longitude`) -radians($_mLongitude))+sin(radians($_mLatitude))*sin(radians(`latitude`))))";
 
-        //$em = $this->getRepository();
-
         $connection = $this->em->getConnection();
-        $statement = $connection->prepare("SELECT id, $_sFormule AS dist FROM station WHERE $_sFormule <= 10 ORDER by dist ASC");
+        $statement = $connection->prepare(
+                                    "SELECT id, $_sFormule AS dist
+                                     FROM station
+                                     WHERE $_sFormule <= 10
+                                     ORDER by dist
+                                     ASC
+                                    ");
         $statement->execute();
         $_aListStations = $statement->fetchAll();
-
-        //_oQuery = $em->createQuery("SELECT id, $_sFormule AS dist FROM station WHERE $_sFormule <= 10 ORDER by dist ASC");
-        //$_aListStations = $_oQuery->getResult();
-
-        //var_dump($_aListStations);
-
-        /*
-        $statement = $connection->prepare("SELECT id, $_sFormule AS dist FROM station WHERE $_sFormule <= 10 ORDER by dist ASC");
-        $statement->execute();
-        $_aListStations = $statement->fetchAll();
-        */
 
         return $_aListStations;
+
     }
 
 
