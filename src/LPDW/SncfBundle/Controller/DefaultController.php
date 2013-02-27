@@ -10,4 +10,9 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
 
+    public function listAction(Request $_oRequest)
+    {
+        return new Response('Liste des gares');
+    }
+
 }

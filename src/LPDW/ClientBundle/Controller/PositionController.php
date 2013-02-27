@@ -30,10 +30,8 @@ class PositionController extends Controller
             {
                 $_oStation = $_oForm->getData();
 
-                // checker le nom rentré par l'utilisateur dans la base
                 $em = $this->getDoctrine()->getManager();
 
-                // redirect
                 return array();
             }
         }

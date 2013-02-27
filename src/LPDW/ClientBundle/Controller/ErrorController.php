@@ -13,7 +13,7 @@ class ErrorController extends Controller
 {
 
     /**
-     * Renvoie des erreurs si la géocalisation est invalide
+     * Renvoie une page d'erreur si la géocalisation est invalide ou échoue
      *
      * @Route ("/erreur", name="lpdw_error", options={"expose"=true})
      * @Template ("LPDWClientBundle:Client:error.html.twig")
