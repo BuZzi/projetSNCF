@@ -1,2 +1,10 @@
 latitude : {{ latitude }}
 longitude : {{ longitude }}
+
+
+<h2>Gares correspondantes</h2>
+<dl class="vertical tabs">
+    {% for station in liste_stations %}
+        <dd><a href="#">{{ station.name }}</a></dd>
+    {% endfor %}
+</dl>

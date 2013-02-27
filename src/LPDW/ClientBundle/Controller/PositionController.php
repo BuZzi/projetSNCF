@@ -14,10 +14,12 @@ use LPDW\SncfBundle\Entity\Station,
 class PositionController extends Controller
 {
     /**
-     * @Route("/accueil")
+     * Rend le formulaire de recherche d'une gare dans la vue, traite les données s'il est soumis
+     *
+     * @Route("/accueil", name="lpdw_search")
      * @Template("LPDWClientBundle:Default:index.html.twig")
      */
-    public function indexAction(Request $_oRequest)
+    public function accueilAction(Request $_oRequest)
     {
         $_oStation = new Station();
         $_oForm = $this->createForm(new SearchStationType(), $_oStation);
@@ -28,11 +30,15 @@ class PositionController extends Controller
 
             if($_oForm->isValid())
             {
-                $_oStation = $_oForm->getData();
+                $_sNameStation = $_oForm['name']->getData();
 
-                $em = $this->getDoctrine()->getManager();
 
-                return array();
+                // appel du service du manager de l'entité Station
+                $_oStation = $this->get('lpdw_sncf.station_manager')->findStationByName($_sNameStation);
+
+                return array(
+                    'station' => $_oStation
+                );
             }
         }
 
@@ -43,7 +49,7 @@ class PositionController extends Controller
     }
 
     /**
-     * Fonction ajax
+     * Fonction appelé en ajax lorsque l'utilisateur accepte de partager ses coordonnées
      *
      * @Route ("/position", name="lpdw_position", options={"expose"=true})
      * @Template("LPDWClientBundle:Client:position.html.twig")
@@ -53,27 +59,26 @@ class PositionController extends Controller
         $_mLatitude = $request->request->get('lat');
         $_mLongitude = $request->request->get('lng');
 
+        // appel du service du manager de l'entité Station
         $_aListStations = $this->get('lpdw_sncf.station_manager')->getAroundStation($_mLatitude, $_mLongitude);
 
 
-
-        if (!$_aListStations) {
-            throw $this->createNotFoundException('Pas de gares à l\'horizon');
+        if (!$_aListStations)
+        {
+            throw $this->createNotFoundException('Pas de gares à l\'horizon. Utiliser plutôt le formulaire');
         }
 
-
-        foreach($_aListStations as $_iKey=> &$_aStation){
+        foreach($_aListStations as $_iKey=> &$_aStation)
+        {
             $_aStation = $this->getDoctrine()
                 ->getRepository('LPDWSncfBundle:Station')
                 ->find($_aStation['id']);
         }
 
-        var_dump($_aListStations);
-
         return array(
                 'latitude' => $_mLatitude,
                 'longitude' => $_mLongitude,
-                'listStations' => $_aListStations
+                'liste_stations' => $_aListStations
         );
     }
 

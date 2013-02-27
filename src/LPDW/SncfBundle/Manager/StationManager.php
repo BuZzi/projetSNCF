@@ -24,11 +24,11 @@ class StationManager extends BaseManager
 
     public function getRepository()
     {
-        //return $this->em->getRepository('LPDWSncfBundle:Station');
+        return $this->em->getRepository('LPDWSncfBundle:Station');
     }
 
     /**
-     * Fonction qui check dans la base les stations les plus proches
+     * Fonction qui check dans la base les stations les plus proches (rayon de 5 km)
      * de la position géographique passée en paramètre (couple latitude-longitude)
      *
      * @param $_mLatitude
@@ -45,7 +45,7 @@ class StationManager extends BaseManager
         $statement = $connection->prepare(
                                     "SELECT id, $_sFormule AS dist
                                      FROM station
-                                     WHERE $_sFormule <= 10
+                                     WHERE $_sFormule <= 5
                                      ORDER by dist
                                      ASC
                                     ");
@@ -57,7 +57,18 @@ class StationManager extends BaseManager
     }
 
 
+    /**
+     * @param $_sNameStation
+     * @return object Station de la station correspondante
+     */
+    public function findStationByName($_sNameStation)
+    {
 
+        $_oStation = $this->getRepository()->findOneByName($_sNameStation);
+
+        return $_oStation;
+
+    }
 
 
 

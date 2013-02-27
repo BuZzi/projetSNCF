@@ -2,16 +2,24 @@
 
 {% block body %}
 
-    <a class="button" id="findMe" href="#">Trouve Moi</a>
+    <span class="button" id="findMe">Trouve Moi</span>
     <!-- Div qui contient les géolocalisations de l'utilisateur (pas affiché à l'utilisateur) -->
     <div id="infosposition"></div>
 
-    <h3>Ou alors utilise le formulaire suivant pour trouver une gare</h3>
+    {% if form is defined %}
+        <h3>Ou alors utilise le formulaire suivant pour trouver une gare</h3>
 
-    <form action="#" method="post" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
-        <input class="button" type="submit"/>
-    </form>
+        <form action="{{ path('lpdw_search') }}" method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+            <input class="button" type="submit"/>
+        </form>
+    {% endif %}
+
+    <!-- Si le formulaire a été soumis et des résultats ont été envoyés depuis le controlleur -->
+    <h3>Stations correspondantes à votre recherche</h3>
+    {% if station is defined %}
+        {{ station.name }}
+    {% endif %}
 
 {% endblock %}
 
