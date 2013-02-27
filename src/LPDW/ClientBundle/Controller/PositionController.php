@@ -8,15 +8,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
-class DefaultController extends Controller
+class PositionController extends Controller
 {
     /**
-     * @Route("/hello/{name}")
+     * @Route("/accueil")
      * @Template("LPDWClientBundle:Default:index.html.twig")
      */
-    public function indexAction($name)
+    public function indexAction()
     {
-        return array('name' => $name);
+        return array();
     }
 
     /**
