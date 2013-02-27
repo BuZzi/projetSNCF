@@ -26,7 +26,7 @@ class Station
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Le nom ne doit pas être vide")
      */
     protected $name;
 
@@ -42,13 +42,11 @@ class Station
 
     /**
      * @ORM\Column(type="decimal", scale=5)
-     * @Assert\NotBlank()
      */
     protected $latitude;
 
     /**
      * @ORM\Column(type="decimal", scale=5)
-     * @Assert\NotBlank()
      */
     protected $longitude;
 

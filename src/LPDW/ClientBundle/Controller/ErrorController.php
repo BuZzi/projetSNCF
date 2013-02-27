@@ -13,10 +13,12 @@ class ErrorController extends Controller
 {
 
     /**
-     * @Route ("/formulaire", name="lpdw_formulaire", options={"expose"=true})
+     * Renvoie des erreurs si la géocalisation est invalide
+     *
+     * @Route ("/erreur", name="lpdw_error", options={"expose"=true})
      * @Template ("LPDWClientBundle:Client:error.html.twig")
      */
-    public function formnulaireAction(Request $_oRequest)
+    public function errorAction(Request $_oRequest)
     {
         $_sError = $_oRequest->request->get('errorTxt');
         return array( 'errorTxt' => $_sError);

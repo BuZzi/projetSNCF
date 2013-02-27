@@ -64,7 +64,7 @@ function errorCallback(error)
     // envoie au controller les données
     $.ajax({
         // url
-        url: Routing.generate('lpdw_formulaire', true),
+        url: Routing.generate('lpdw_error', true),
         type: "POST",
         data:
         {

@@ -6,12 +6,11 @@
     <!-- Div qui contient les géolocalisations de l'utilisateur (pas affiché à l'utilisateur) -->
     <div id="infosposition"></div>
 
-    <p>Ou utilise le formulaire suivant pour trouver une gare</p>
+    <h3>Ou alors utilise le formulaire suivant pour trouver une gare</h3>
 
-    Formulaire :
     <form action="#" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
-        <input type="submit" />
+        <input class="button" type="submit"/>
     </form>
 
 {% endblock %}
