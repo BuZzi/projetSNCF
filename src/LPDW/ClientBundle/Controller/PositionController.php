@@ -54,20 +54,30 @@ class PositionController extends Controller
     {
         $_mLatitude = $request->request->get('lat');
         $_mLongitude = $request->request->get('lng');
+
         $_sFormule = "(6366 * acos(cos(radians($_mLatitude))*cos(radians(`latitude`))*cos(radians(`longitude`) -radians($_mLongitude))+sin(radians($_mLatitude))*sin(radians(`latitude`))))";
-        //$_sSql = "SELECT name, $_sFormule AS dist FROM LPDWSncfBundle:Station WHERE $_sFormule <= '10' ORDER by dist ASC";
 
-        /*$em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery(
-            "SELECT name, $_sFormule AS dist FROM LPDWSncfBundle:Station WHERE $_sFormule <= :distance ORDER by dist ASC"
-        )->setParameter('distance', '10');
+        $em = $this->getDoctrine()->getManager();
 
-        $_aListStations = $query->getResult();*/
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("SELECT name, $_sFormule AS dist FROM station WHERE $_sFormule <= 10 ORDER by dist ASC");
+        $statement->execute();
+        $_aListStations = $statement->fetchAll();
 
+
+        $product = $this->getDoctrine()
+            ->getRepository('AcmeStoreBundle:Product')
+            ->find($id);
+
+        if (!$product) {
+            throw $this->createNotFoundException('Produit non trouvé avec id '.$id);
+        }
+
+        var_dump($_aListStations);
         return array(
                 'latitude' => $_mLatitude,
                 'longitude' => $_mLongitude,
-                //'listStations' => $_aListStations
+                'listStations' => $_aListStations
         );
     }
 
