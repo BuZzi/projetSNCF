@@ -83,7 +83,7 @@ class PositionController extends Controller
         // appel du service du manager de l'entité Station
         $_aListStations = $this->get('lpdw_sncf.station_manager')->getAroundStation($_mLatitude, $_mLongitude);
 
-
+        // Si aucune stations n' été trouvée, retourne une erreur
         if (!$_aListStations)
         {
             throw $this->createNotFoundException('Pas de gares à l\'horizon. Utiliser plutôt le formulaire');
