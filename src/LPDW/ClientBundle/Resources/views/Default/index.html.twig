@@ -47,7 +47,7 @@
             <h4>Gares correspondantes à votre recherche</h4>
             <dl class="vertical tabs twelve columns">
                 {% for station in stations %}
-                    <dd><a href="{{ path('lpdw_search', {'station': station}) }}">{{ station.name }}</a></dd>
+                    <dd><a href="{{ path('lpdw_categories', {'name': station.name, 'latitude': station.latitude, 'longitude': station.longitude}) }}">{{ station.name }}</a></dd>
                 {% endfor %}
             </dl>
 

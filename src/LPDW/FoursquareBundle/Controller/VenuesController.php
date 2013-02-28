@@ -12,16 +12,16 @@ use LPDW\FoursquareBundle\Model\FoursquareApi;
 class VenuesController extends Controller
 {
     /**
-     * @Route("/{station}/categories", name="lpdw_categories"")
+     * @Route("/station/{name}/{latitude}/{longitude}/categories", name="lpdw_categories")
      * @Template()
      */
-    public function categoriesAction($_oStation)
+    public function categoriesAction($name, $latitude, $longitude)
     {
         $client_key = $this->container->getParameter('foursquare_client_key');
         $client_secret = $this->container->getParameter('foursquare_client_secret');
 
         $foursquare = new FoursquareAPI($client_key,$client_secret);
 
-        return ;
+        return new Response('recu');
     }
 }
