@@ -24,7 +24,7 @@ class StationManager extends BaseManager
 
     public function getRepository()
     {
-        return $this->em->getRepository('LPDWSncfBundle:Station');
+        //return $this->em->getRepository('LPDWSncfBundle:Station');
     }
 
     /**
@@ -59,14 +59,28 @@ class StationManager extends BaseManager
 
     /**
      * @param $_sNameStation
-     * @return object Station de la station correspondante
+     * @return array des stations correspondante à la recherche
      */
-    public function findStationByName($_sNameStation)
+    public function findStationsByName($_sNameStation)
     {
 
-        $_oStation = $this->getRepository()->findOneByName($_sNameStation);
+        $_oQuery = $this->em->createQuery(
+                                "SELECT s
+                                 FROM LPDWSncfBundle:Station s
+                                 WHERE s.name
+                                 LIKE :word
+                                ");
+        $_oQuery->setParameter('word', '%'.$_sNameStation.'%');
 
-        return $_oStation;
+        $_aListStations = $_oQuery->getArrayResult();
+
+        // si plus de 15 résultats trouvées, renvoit false au controlleur
+        if( count($_aListStations) >= 15 )
+        {
+            return false;
+        }
+
+        return $_aListStations;
 
     }
 

@@ -7,6 +7,12 @@
     <div id="infosposition"></div>
 
     {% if form is defined %}
+        {% if errorTxt is defined %}
+            <div class="alert-box alert">
+                {{ errorTxt }}
+                <a href="" class="close">&times;</a>
+            </div>
+        {% endif %}
         <h3>Ou alors utilise le formulaire suivant pour trouver une gare</h3>
 
         <form action="{{ path('lpdw_search') }}" method="post" {{ form_enctype(form) }}>
@@ -16,9 +22,14 @@
     {% endif %}
 
     <!-- Si le formulaire a été soumis et des résultats ont été envoyés depuis le controlleur -->
-    <h3>Stations correspondantes à votre recherche</h3>
-    {% if station is defined %}
-        {{ station.name }}
+    {% if stations is defined %}
+        <h3>Stations correspondantes à votre recherche</h3>
+
+        <dl class="vertical tabs">
+            {% for station in stations %}
+                <dd><a href="#">{{ station.name }}</a></dd>
+            {% endfor %}
+        </dl>
     {% endif %}
 
 {% endblock %}

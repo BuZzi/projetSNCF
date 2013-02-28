@@ -30,19 +30,39 @@ class PositionController extends Controller
 
             if($_oForm->isValid())
             {
+                // récupère la valeur du champ du formulaire
                 $_sNameStation = $_oForm['name']->getData();
 
-
                 // appel du service du manager de l'entité Station
-                $_oStation = $this->get('lpdw_sncf.station_manager')->findStationByName($_sNameStation);
+                $_aListStations = $this->get('lpdw_sncf.station_manager')->findStationsByName($_sNameStation);
 
+
+                // Si trop de résultats trouvés, demande à l'utilisateur d'affiner sa recherche
+                if ($_aListStations ===  false)
+                {
+                    $_sErrorTxt = 'Trop de résultats ont été trouvés, veuillez affiner votre recherche';
+                    return array(
+                        'errorTxt' => $_sErrorTxt,
+                        'form' => $_oForm->createView(),
+                    );
+                }
+
+                // Si pas de gares correspondantes trouvé
+                if (!$_aListStations)
+                {
+                    $_sErrorTxt = 'Aucune gare correspondante à votre recherche n\'a été trouvée';
+                    return array(
+                        'errorTxt' => $_sErrorTxt,
+                        'form' => $_oForm->createView(),
+                    );
+                }
                 return array(
-                    'station' => $_oStation
+                    'stations' => $_aListStations
                 );
             }
         }
 
-        // Render the form in the view
+        // Rend le formulaire dans la vie s'il n'a pas été soumis
         return array(
             'form' => $_oForm->createView(),
         );
