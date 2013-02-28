@@ -14,5 +14,5 @@ parameters:
     locale:            fr
     secret:            ThisTokenIsNotSoSecretChangeIt
 
-    client_key:        MMZGMHS5AQXN2JUERKNPOGV4MFOZQ4RBZPVDT3HVKA4CH5FM
-    client_secret:     WD3VGUTUIG0ZSXJDKOV2ZT0T5IF01KPCJLMMTUZ31VD03BLY
+    foursquare_client_key:        MMZGMHS5AQXN2JUERKNPOGV4MFOZQ4RBZPVDT3HVKA4CH5FM
+    foursquare_client_secret:     WD3VGUTUIG0ZSXJDKOV2ZT0T5IF01KPCJLMMTUZ31VD03BLY
