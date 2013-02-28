@@ -1,5 +1,13 @@
 $(document).ready(function()
 {
+    // Lors du clic sur le bouton 'je recherche une gare spécifique' => affiche le formulaire de recherche
+    $('#displaySearchForm').click(function(){
+        $('#searchStationForm').show();
+    });
+    $('#displaySearchFormBis').click(function(){
+        $('#searchStationForm').show();
+    });
+
     // Lors du clic sur le bouton "trouve moi"
     $('#findMe').click(function(){
         // Si le navigateur supporte la géolocalisation

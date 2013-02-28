@@ -1,36 +1,59 @@
 {% extends '::base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@LPDWClientBundle/Resources/public/css/*' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
 {% block body %}
 
-    <span class="button" id="findMe">Trouve Moi</span>
     <!-- Div qui contient les géolocalisations de l'utilisateur (pas affiché à l'utilisateur) -->
-    <div id="infosposition"></div>
+    <div class="row" id="infosposition">
+        <span class="button twelve columns" id="findMe">Trouve Moi</span>
+    </div>
 
     {% if form is defined %}
+
+        <div class="row">
+
+            <div class="line-separator"></div>
+
+            <h3>Je recherche une gare en particulier </h3>
+
+                <form action="{{ path('lpdw_search') }}" method="post" {{ form_enctype(form) }}>
+                    {{ form_widget(form) }}
+                    <input class="button" type="submit" value="Rechercher"/>
+                </form>
+        </div>
+
+    {% endif %}
+
+
+    <div class="row">
+
         {% if errorTxt is defined %}
-            <div class="alert-box alert">
+            <!-- Si une erreur est survenue lors de la recherche (formulaire soumis) -->
+            <div class="alert-box alert twelve columns">
                 {{ errorTxt }}
                 <a href="" class="close">&times;</a>
             </div>
         {% endif %}
-        <h3>Ou alors utilise le formulaire suivant pour trouver une gare</h3>
 
-        <form action="{{ path('lpdw_search') }}" method="post" {{ form_enctype(form) }}>
-            {{ form_widget(form) }}
-            <input class="button" type="submit"/>
-        </form>
-    {% endif %}
+        {% if stations is defined %}
 
-    <!-- Si le formulaire a été soumis et des résultats ont été envoyés depuis le controlleur -->
-    {% if stations is defined %}
-        <h3>Stations correspondantes à votre recherche</h3>
+            <!-- Si le formulaire a été soumis et des résultats ont été envoyés depuis le controlleur -->
+            <h4>Gares correspondantes à votre recherche</h4>
+            <dl class="vertical tabs twelve columns">
+                {% for station in stations %}
+                    <dd><a href="#">{{ station.name }}</a></dd>
+                {% endfor %}
+            </dl>
 
-        <dl class="vertical tabs">
-            {% for station in stations %}
-                <dd><a href="#">{{ station.name }}</a></dd>
-            {% endfor %}
-        </dl>
-    {% endif %}
+        {% endif %}
+
+    </div>
 
 {% endblock %}
 
@@ -38,6 +61,6 @@
 {% block javascripts %}
     {{ parent() }}
     {% javascripts '@LPDWClientBundle/Resources/public/js/*' %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
+        <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}

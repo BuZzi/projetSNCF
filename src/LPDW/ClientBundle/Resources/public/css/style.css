@@ -1,0 +1,10 @@
+label{
+    display: none;
+}
+
+.line-separator{
+    background:#717171;
+    border-bottom:1px solid #313030;
+    height:1px;
+    margin: 30px auto;
+}

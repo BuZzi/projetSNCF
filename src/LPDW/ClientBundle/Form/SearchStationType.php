@@ -17,8 +17,10 @@ class SearchStationType extends AbstractType
     {
         $_oBuilder
             ->add('name', 'text', array(
-            'label' => 'Nom de la gare'
-        ));
+                'attr'=> array(
+                        'placeholder'=>'Nom de la gare'
+                    )
+            ));
     }
 
     public function getName()

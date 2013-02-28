@@ -57,7 +57,8 @@ class PositionController extends Controller
                     );
                 }
                 return array(
-                    'stations' => $_aListStations
+                    'stations' => $_aListStations,
+                    'form' => $_oForm->createView(),
                 );
             }
         }
