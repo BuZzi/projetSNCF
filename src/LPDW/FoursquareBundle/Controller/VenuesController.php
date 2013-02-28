@@ -17,8 +17,8 @@ class VenuesController extends Controller
      */
     public function categoriesAction($_oStation)
     {
-        $client_key = $this->container->getParameter('client_key');
-        $client_secret = $this->container->getParameter('client_secret');
+        $client_key = $this->container->getParameter('foursquare_client_key');
+        $client_secret = $this->container->getParameter('foursquare_client_secret');
 
         $foursquare = new FoursquareAPI($client_key,$client_secret);
 
