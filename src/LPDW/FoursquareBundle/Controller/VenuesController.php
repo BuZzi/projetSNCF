@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use LPDW\FoursquareBundle\Model\FoursquareApi;
 
-use LPDW\GoogleMapBundle\Model\Map;
+use LPDW\GoogleMapBundle\Manager\GoogleMapManager;
 
 class VenuesController extends Controller
 {
@@ -66,7 +66,7 @@ class VenuesController extends Controller
 
         //var_dump($listVenues);
 
-        $_oMap = new Map();
+        $_oMap = $this->get('lpdw_google_map.google_map_manager');
         $_oMap = $_oMap->buildMap();
 
         return array(
