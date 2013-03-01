@@ -1,3 +1,4 @@
+A enlever après :
 latitude : {{ latitude }}
 longitude : {{ longitude }}
 
@@ -5,6 +6,6 @@ longitude : {{ longitude }}
 <h4>Gares proches de votre position</h4>
 <dl class="vertical tabs">
     {% for station in liste_stations %}
-        <dd><a href="#">{{ station.name }}</a></dd>
+        <dd><a href="{{ path('lpdw_categories', {'name': station.name, 'latitude': station.latitude, 'longitude': station.longitude}) }}">{{ station.name }}</a></dd>
     {% endfor %}
 </dl>
