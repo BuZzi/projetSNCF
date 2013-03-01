@@ -3,5 +3,7 @@
 {% block body %}
     {{ google_map_container(googleMap) }}
 {% endblock %}
-
-{{ google_map_js(map) }}
+{% block javascripts %}
+    {{ parent() }}
+    {{ google_map_js(googleMap) }}
+{% endblock %}

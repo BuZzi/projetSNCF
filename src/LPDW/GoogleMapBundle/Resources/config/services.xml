@@ -11,6 +11,7 @@
     <services>
         <service id="lpdw_google_map.google_map_manager" class="%lpdw_google_map.google_map_manager.class%">
             <argument type="service" id="ivory_google_map.map" strict="false" />
+            <argument type="service" id="ivory_google_map.marker" strict="false" />
         </service>
     </services>
 

@@ -65,13 +65,24 @@ class VenuesController extends Controller
         $listVenues = json_decode($response);
 
         //var_dump($listVenues);
+        $_aVenues = array(
+            'latitude' => $latitude,
+            'longitude' => $longitude,
+        );
 
+        // Construit la carte et affiche les lieux d'intérêt autour de notre position
         $_oMap = $this->get('lpdw_google_map.google_map_manager');
-        $_oMap = $_oMap->buildMap();
+        $_oFinalMap = $_oMap->buildMap($latitude, $longitude);
+
+        $_oMarker = $_oMap->createMarker($_aVenues);
+
+        // Add your marker to the map
+        $_oFinalMap->addMarker($_oMarker);
+
 
         return array(
             'listVenues' => $listVenues,
-            'googleMap' => $_oMap,
+            'googleMap' => $_oFinalMap,
         );
     }
 }
