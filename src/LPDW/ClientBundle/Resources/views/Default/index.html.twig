@@ -14,32 +14,33 @@
         <div id="logo">
             <figure id="google-map-logo"></figure>
         </div>
+        <hr />
     </div>
     <!-- End google map image logo -->
 
-    <!-- Div qui contient les géolocalisations de l'utilisateur (pas affiché à l'utilisateur) une fois le bouton 'Trouve moi' cliqué -->
+    <!-- Div qui contient les géolocalisations de l'utilisateur (à enlever après) une fois le bouton 'Trouve moi' cliqué -->
     <div class="row" id="infosposition">
-        <span class="button twelve columns" id="findMe">Trouve Moi</span>
+        <div class="two columns"></div>
+            <span class="button eight columns large" id="findMe">Trouve Moi</span>
+        <div class="two columns"></div>
     </div>
 
     <!-- Formulaire Recherche -->
     {% if form is defined %}
 
         <div class="row">
-
-            <hr />
-
-            <h5>Je recherche une gare en particulier </h5>
-
-                <form action="{{ path('lpdw_search') }}" method="post" {{ form_enctype(form) }}>
+            <div class="formulaire-recherche">
+                <hr />
+                <h5>Je recherche une gare en particulier </h5>
+                <form action="{{ path('lpdw_search') }}" method="post" class="eight columns" {{ form_enctype(form) }}>
                     {{ form_widget(form) }}
                     <input class="button" type="submit" value="Rechercher"/>
                 </form>
+            </div>
         </div>
 
     {% endif %}
     <!-- End Formulaire Recherche -->
-
 
     <div class="row">
 
