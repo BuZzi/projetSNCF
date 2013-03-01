@@ -14,6 +14,6 @@ figure#google-map-logo {
     padding-top: 65%;
     background-image: url('../images/g_map.png');
     background-size: cover;
-    moz-background-size: cover;  /* Firefox 3.6 */
+    moz-background-size: cover;  /* Firefox compatibility */
     background-position: center;  /* Internet Explorer 7/8 */
 }
