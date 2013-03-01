@@ -21,7 +21,7 @@ class VenuesController extends Controller
         $client_secret = $this->container->getParameter('foursquare_client_secret');
 
         $foursquare = new FoursquareAPI($client_key,$client_secret);
-
+        
         return new Response('recu');
     }
 }
