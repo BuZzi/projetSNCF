@@ -13,12 +13,19 @@ use Symfony\Component\Form\FormBuilderInterface;
 class SearchStationType extends AbstractType
 {
 
+    /**
+     * Ajoute les champs au formulaire
+     *
+     * @param \Symfony\Component\Form\FormBuilderInterface $_oBuilder
+     * @param array $option
+     */
     public function buildForm(FormBuilderInterface $_oBuilder, array $option)
     {
         $_oBuilder
             ->add('name', 'text', array(
                 'attr'=> array(
-                        'placeholder'=>'Nom de la gare'
+                        'placeholder' => 'Nom de la gare',
+                        'class' => 'six columns'
                     )
             ));
     }

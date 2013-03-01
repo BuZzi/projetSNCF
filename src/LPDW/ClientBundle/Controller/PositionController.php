@@ -30,7 +30,7 @@ class PositionController extends Controller
 
             if($_oForm->isValid())
             {
-                // récupère la valeur du champ du formulaire
+                // récupère la valeur du champ 'nom de la gare' du formulaire
                 $_sNameStation = $_oForm['name']->getData();
 
                 // appel du service du manager de l'entité Station

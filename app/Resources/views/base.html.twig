@@ -1,112 +1,42 @@
 <!DOCTYPE html>
 <html>
+
     <head>
+
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}projet SNCF!{% endblock %}</title>
+
         {% block stylesheets %}
             <link rel="stylesheet" type="text/css" href="{{ asset('bundles/bmatznerfoundation/css/foundation.min.css') }}" />
         {% endblock %}
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
     </head>
+
     <body>
+
+        <!-- Content -->
         {% block body %}
-            <!-- Nav and Banner -->
-            <div class="row">
-                <div class="twelve columns">
-                    <ul class="nav-bar">
-                        <li><a href="#">Link 1</a></li>
-                        <li><a href="#">Link 2</a></li>
-                        <li><a href="#">Link 3</a></li>
-                        <li><a href="#">Link 4</a></li>
-                        <li><a href="#">Link 5</a></li>
-                        <li><a href="#">Link 6</a></li>
-                        <li><a href="#">Link 7</a></li>
-                    </ul>
-
-                    {% block map %}
-                        <!-- Main Banner Image - place in a paragraph to enforce the modular scale spacing -->
-                        <p><img src="http://placehold.it/1000x400&text=[banner img]" /></p>
-                    {% endblock %}
-                </div>
-            </div>
-
-            <!-- End Nav and Banner -->
-
-
-            <!-- Main Content Section -->
-
-            <div class="row">
-
-                <div class="eight columns">
-                    <h2>Catégories</h2>
-                    <dl class="vertical tabs">
-                        <dd class="active"><a href="#vertical1">Vertical Tab 1</a></dd>
-                        <dd><a href="#vertical2">Vertical Tab 2</a></dd>
-                        <dd><a href="#vertical3">Vertical Tab 3</a></dd>
-                    </dl>
-                </div>
-
-                <div class="four columns">
-                    <!-- Gallery sidebar with a block grid. Note: block grid items should be the same size for optimal results -->
-                    <ul class="block-grid three-up">
-                        <li><a href="#"><img src="http://placehold.it/120x120" /></a></li>
-                        <li><a href="#"><img src="http://placehold.it/120x120" /></a></li>
-                        <li><a href="#"><img src="http://placehold.it/120x120" /></a></li>
-                        <li><a href="#"><img src="http://placehold.it/120x120" /></a></li>
-                        <li><a href="#"><img src="http://placehold.it/120x120" /></a></li>
-                        <li><a href="#"><img src="http://placehold.it/120x120" /></a></li>
-                    </ul>
-                </div>
-
-            </div>
-
-
-            <!-- Call to Action Panel -->
-            <div class="row">
-                <div class="twelve columns">
-
-                    <div class="panel">
-                        <h4>Get in touch!</h4>
-
-                        <div class="row">
-                            <div class="nine columns">
-                                <p>We'd love to hear from you, you attractive person you.</p>
-                            </div>
-                            <div class="three columns">
-                                <a href="#" class="radius button right">Contact Us</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Footer -->
-            {% block footer %}
-                <footer class="row">
-                    <div class="twelve columns">
-                        <hr />
-                        <div class="row">
-                            <div class="six columns">
-                                <p>&copy; Copyright no one at all. Go to town.</p>
-                            </div>
-                            <div class="six columns">
-                                <ul class="link-list right">
-                                    <li><a href="#">Link 1</a></li>
-                                    <li><a href="#">Link 2</a></li>
-                                    <li><a href="#">Link 3</a></li>
-                                    <li><a href="#">Link 4</a></li>
-                                    <li><a href="#">Link 5</a></li>
-                                    <li><a href="#">Link 6</a></li>
-                                    <li><a href="#">Link 7</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            {% endblock %}
         {% endblock %}
+        <!-- End Content -->
 
+        <!-- Footer -->
+        {% block footer %}
+            <footer class="row">
+                <div class="twelve columns">
+                    <hr />
+                    <div class="row">
+                        <div class="six columns">
+                            <p>&copy; Copyright</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        {% endblock %}
+        <!-- End Footer -->
+
+        <!-- Javascript -->
         {% block javascripts %}
             <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
             <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
@@ -115,5 +45,8 @@
             <script type="text/javascript" src="{{ asset('bundles/bmatznerfoundation/js/jquery.foundation.tabs.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/lpdwclient/js/app.js') }}"></script>
         {% endblock %}
+        <!-- End Javascript -->
+
     </body>
+
 </html>

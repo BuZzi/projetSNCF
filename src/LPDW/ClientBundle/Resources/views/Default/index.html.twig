@@ -2,25 +2,34 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {% stylesheets '@LPDWClientBundle/Resources/public/css/*' %}
+    {% stylesheets '@LPDWClientBundle/Resources/public/css/*' filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock %}
 
 {% block body %}
 
-    <!-- Div qui contient les géolocalisations de l'utilisateur (pas affiché à l'utilisateur) -->
+    <!-- Google map image logo -->
+    <div class="row">
+        <div id="logo">
+            <figure id="google-map-logo"></figure>
+        </div>
+    </div>
+    <!-- End google map image logo -->
+
+    <!-- Div qui contient les géolocalisations de l'utilisateur (pas affiché à l'utilisateur) une fois le bouton 'Trouve moi' cliqué -->
     <div class="row" id="infosposition">
         <span class="button twelve columns" id="findMe">Trouve Moi</span>
     </div>
 
+    <!-- Formulaire Recherche -->
     {% if form is defined %}
 
         <div class="row">
 
-            <div class="line-separator"></div>
+            <hr />
 
-            <h3>Je recherche une gare en particulier </h3>
+            <h5>Je recherche une gare en particulier </h5>
 
                 <form action="{{ path('lpdw_search') }}" method="post" {{ form_enctype(form) }}>
                     {{ form_widget(form) }}
@@ -29,6 +38,7 @@
         </div>
 
     {% endif %}
+    <!-- End Formulaire Recherche -->
 
 
     <div class="row">
