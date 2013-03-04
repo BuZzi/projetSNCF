@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <h2>Catégories de lieux autour de la gare </h2>
+        <dl class="vertical tabs">
+            {% for categorie in listCategories %}
+                <dd>
+                    <a href="{{ path('lpdw_venuesincategories', {'name': nameStation, 'latitude': latitude, 'longitude': longitude, 'categorie': categorie.id}) }}">
+                        {{ categorie.name }}
+                    </a>
+                </dd>
+            {% endfor %}
+        </dl>
+    </div>
+{% endblock %}

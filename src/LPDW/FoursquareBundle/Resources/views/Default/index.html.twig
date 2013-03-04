@@ -1,9 +1,0 @@
-{% extends '::base.html.twig' %}
-
-{% block body %}
-    <ul>
-    {% for categorie in listCategories %}
-        <li><a href="{{ path('lpdw_venuesincategories', {'name': nameStation, 'latitude': latitude, 'longitude': longitude, 'categorie': categorie.id}) }}">{{ categorie.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% endblock %}
