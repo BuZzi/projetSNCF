@@ -2,7 +2,12 @@
 
 {% block body %}
     <div class="row">
-        <h2>Catégories de lieux autour de la gare </h2>
+        <h5>Catégories des lieux autour de la gare : </h5>
+        <h4>
+            <i class="foundicon-flag"></i>
+            {{ nameStation }}
+        </h4>
+
         <dl class="vertical tabs">
             {% for categorie in listCategories %}
                 <dd>

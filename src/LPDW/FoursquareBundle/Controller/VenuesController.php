@@ -16,7 +16,7 @@ class VenuesController extends Controller
 
     /**
      * @Route("/station/{name}/{latitude}/{longitude}/categories", name="lpdw_categories")
-     * @Template("LPDWFoursquareBundle:Default:index.html.twig")
+     * @Template("LPDWFoursquareBundle:Default:categories.html.twig")
      */
     public function categoriesAction($name, $latitude, $longitude)
     {

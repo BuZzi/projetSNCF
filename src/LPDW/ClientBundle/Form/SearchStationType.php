@@ -25,7 +25,7 @@ class SearchStationType extends AbstractType
             ->add('name', 'text', array(
                 'attr'=> array(
                         'placeholder' => 'Nom de la gare',
-                        'class' => 'six columns'
+                        'class' => 'twelve columns'
                     )
             ));
     }

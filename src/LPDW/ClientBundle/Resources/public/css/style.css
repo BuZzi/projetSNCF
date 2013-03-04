@@ -18,8 +18,10 @@ figure#google-map-logo {
     background-position: center;  /* Internet Explorer 7/8 */
 }
 
-
 div.formulaire-recherche{
-    margin: 0 auto;
-    width: 80%;
+    text-align: center;
+}
+
+input[type="submit"]{
+    width: 100%;
 }

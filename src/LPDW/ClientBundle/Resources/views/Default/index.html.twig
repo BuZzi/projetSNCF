@@ -21,7 +21,10 @@
     <!-- Div qui contient les géolocalisations de l'utilisateur (à enlever après) une fois le bouton 'Trouve moi' cliqué -->
     <div class="row" id="infosposition">
         <div class="two columns"></div>
-            <span class="button eight columns large" id="findMe">Trouve Moi</span>
+            <span class="button eight columns large" id="findMe">
+                <i class="foundicon-flag"></i>
+                Trouver les gares à proximité de ma position
+            </span>
         <div class="two columns"></div>
     </div>
 
@@ -29,14 +32,18 @@
     {% if form is defined %}
 
         <div class="row">
-            <div class="formulaire-recherche">
-                <hr />
-                <h5>Je recherche une gare en particulier </h5>
-                <form action="{{ path('lpdw_search') }}" method="post" class="eight columns" {{ form_enctype(form) }}>
+            <hr />
+            <div class="two columns"></div>
+            <div class="eight columns formulaire-recherche">
+                <h5><i class="foundicon-search"></i>Je recherche une gare en particulier </h5>
+                <form action="{{ path('lpdw_search') }}" method="post"  {{ form_enctype(form) }}>
                     {{ form_widget(form) }}
-                    <input class="button" type="submit" value="Rechercher"/>
+                    <div class="twelve columns">
+                        <input class="button" type="submit" value="Rechercher"/>
+                    </div>
                 </form>
             </div>
+            <div class="two columns"></div>
         </div>
 
     {% endif %}
@@ -46,9 +53,8 @@
 
         {% if errorTxt is defined %}
             <!-- Si une erreur est survenue lors de la recherche (formulaire soumis) -->
-            <div class="alert-box alert twelve columns">
+            <div data-alert class="alert-box alert twelve columns">
                 {{ errorTxt }}
-                <a href="" class="close">&times;</a>
             </div>
         {% endif %}
 
