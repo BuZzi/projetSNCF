@@ -1,25 +1,19 @@
 $(document).ready(function()
 {
-    // Lors du clic sur le bouton 'je recherche une gare spécifique' => affiche le formulaire de recherche
-    $('#displaySearchForm').click(function(){
-        $('#searchStationForm').show();
-    });
-    $('#displaySearchFormBis').click(function(){
-        $('#searchStationForm').show();
-    });
 
-    // Lors du clic sur le bouton "trouve moi"
+    // Lors du clic sur le bouton "Trouvez les gares à proximité de ma position"
     $('#findMe').click(function(){
         // Si le navigateur supporte la géolocalisation
         if(navigator.geolocation)
         {
-            // L’API est disponible
-            // Appel de la fonction qui envoie la position au controller
+            // L’API géolocalisation est disponible
+            // Appel de la fonction qui envoie la position en x et y de l'utilisateur au controller
+            // Fonctions de succès ou d'erreur appelés en callback
             navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
         }
         else
         {
-            // Pas de support de l'HTML
+            // Pas de support de la géolocalisation HTML5
             alert("Votre navigateur ne prend pas en compte la géolocalisation HTML5");
         }
     });
@@ -32,11 +26,19 @@ $(document).ready(function()
  */
 function successCallback(position)
 {
-    // envoie au controller les données
+    // affiche une gif de chargement lors de l'appel ajax
+    var contentLoading = '<div class="text-center">'+
+                            '<p><img class="loading-image" src='+window.loadingImg+' alt="loading" /></p>'+
+                            '<h6>Recherche en cours...</h6>'+
+                         '</div>';
+    document.getElementById("infosposition").innerHTML = contentLoading;
+
+    // appel ajax vers le controlleur
     $.ajax({
         // url
         url: Routing.generate('lpdw_position', true),
         type: "POST",
+        // envoie les données
         data:
         {
             "lat" : position.coords.latitude,
@@ -44,6 +46,7 @@ function successCallback(position)
         },
         success: function(data)
         {
+            // Affiche les données recus du controlleur
             document.getElementById("infosposition").innerHTML = data;
         }
     });
@@ -51,7 +54,7 @@ function successCallback(position)
 
 /**
  * Fonction qui envoie une notification d'erreur au controller
- * @param void
+ * @param error
  * @return void
  */
 function errorCallback(error)

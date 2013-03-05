@@ -11,6 +11,7 @@
 
     <!-- Google map image logo -->
     <div class="row">
+        <h1 class="text-center">Where ?</h1>
         <div id="logo">
             <figure id="google-map-logo"></figure>
         </div>
@@ -49,7 +50,7 @@
     {% endif %}
     <!-- End Formulaire Recherche -->
 
-    <div class="row">
+    <div class="row search-results">
 
         {% if errorTxt is defined %}
             <!-- Si une erreur est survenue lors de la recherche (formulaire soumis) -->
@@ -79,5 +80,9 @@
     {{ parent() }}
     {% javascripts '@LPDWClientBundle/Resources/public/js/*' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
+        <script type="text/javascript">
+            // stocke dans une variable le lien vers le gif de chargement (utilisée par le JS lors de l'appel ajax ensuite)
+            var loadingImg = "{{ asset('Resources/public/images/loading.gif') }}";
+        </script>
     {% endjavascripts %}
 {% endblock %}

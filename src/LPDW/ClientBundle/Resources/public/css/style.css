@@ -25,3 +25,7 @@ div.formulaire-recherche{
 input[type="submit"]{
     width: 100%;
 }
+
+div.search-results{
+    margin-top: 15px;
+}
