@@ -1,0 +1,11 @@
+/* TEAM */
+Your title: Romain Ardiet, Franck Gorin.
+Site: projet.lpdw@gmail.com
+Github : https://github.com/BuZzi/projetSncf
+Location: Paris, France.
+
+/* SITE */
+Last update: 2013/03/07
+Standards: HTML5, CSS3
+Components: Symfony2, jQuery, Zurb Foundation 4, Foursquare API, Google Map.
+Software: JetBrains PHPStorm 5
