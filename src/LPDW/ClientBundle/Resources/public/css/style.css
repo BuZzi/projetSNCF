@@ -7,23 +7,11 @@ label{
 /** technique utilisée : http://voormedia.com/blog/2012/11/responsive-background-images-with-fixed-or-fluid-aspect-ratios **/
 div#logo {
     margin: 0 auto;
-    max-width: 555px;  /* Taille de l'image de fond */
 }
 
 figure#google-map-logo {
     padding-top: 65%;
     background-image: url('../images/g_map.png');
-    background-size: cover;
-    moz-background-size: cover;  /* Firefox compatibility */
-    background-position: center;  /* Internet Explorer 7/8 */
-}
-
-div.formulaire-recherche{
-    text-align: center;
-}
-
-input[type="submit"]{
-    width: 100%;
 }
 
 div.search-results{

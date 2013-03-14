@@ -10,52 +10,53 @@
 {% block body %}
 
     <!-- Google map image logo -->
-    <div class="row">
+    <div class="row-fluid">
         <h1 class="text-center">Where ?</h1>
-        <div id="logo">
-            <figure id="google-map-logo"></figure>
+        <div id="logo row-fluid">
+            <figure id="span12 google-map-logo"></figure>
         </div>
         <hr />
     </div>
     <!-- End google map image logo -->
 
     <!-- Div qui contient les géolocalisations de l'utilisateur (à enlever après) une fois le bouton 'Trouve moi' cliqué -->
-    <div class="row" id="infosposition">
-        <div class="two columns"></div>
-            <span class="button eight columns large" id="findMe">
+    <div class="row-fluid" id="infosposition">
+        <div class="span2"></div>
+            <span class="span8" id="findMe">
                 <i class="foundicon-flag"></i>
                 Trouver les gares à proximité de ma position
             </span>
-        <div class="two columns"></div>
+        <div class="span2""></div>
     </div>
 
     <!-- Formulaire Recherche -->
     {% if form is defined %}
 
-        <div class="row">
+        <div class="row-fluid">
             <hr />
-            <div class="two columns"></div>
-            <div class="eight columns formulaire-recherche">
+            <div class="span2"></div>
+            <div class="span8 formulaire-recherche">
                 <h5><i class="foundicon-search"></i>Je recherche une gare en particulier </h5>
                 <form action="{{ path('lpdw_search') }}" method="post"  {{ form_enctype(form) }}>
                     {{ form_widget(form) }}
-                    <div class="twelve columns">
-                        <input class="button" type="submit" value="Rechercher"/>
+                    <div class="span12">
+                        <input class="btn btn-primary" type="submit" value="Rechercher"/>
                     </div>
                 </form>
             </div>
-            <div class="two columns"></div>
+            <div class="span2"></div>
         </div>
 
     {% endif %}
     <!-- End Formulaire Recherche -->
 
-    <div class="row search-results">
+    <div class="row-fluid search-results">
 
         {% if errorTxt is defined %}
             <!-- Si une erreur est survenue lors de la recherche (formulaire soumis) -->
-            <div data-alert class="alert-box alert twelve columns">
+            <div data-alert class="span12 alert alert-error ">
                 {{ errorTxt }}
+                <a class="close" data-dismiss="alert" href="#">&times;</a>
             </div>
         {% endif %}
 
@@ -63,11 +64,15 @@
 
             <!-- Si le formulaire a été soumis et des résultats ont été envoyés depuis le controlleur -->
             <h4>Gares correspondantes à votre recherche</h4>
-            <dl class="vertical tabs twelve columns">
+            <ul class="span12 nav nav-list">
                 {% for station in stations %}
-                    <dd><a href="{{ path('lpdw_categories', {'name': station.name, 'latitude': station.latitude, 'longitude': station.longitude}) }}">{{ station.name }}</a></dd>
+                    <li>
+                        <a href="{{ path('lpdw_categories', {'name': station.name, 'latitude': station.latitude, 'longitude': station.longitude}) }}">
+                            {{ station.name }}
+                        </a>
+                    </li>
                 {% endfor %}
-            </dl>
+            </ul>
 
         {% endif %}
 

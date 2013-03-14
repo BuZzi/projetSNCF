@@ -19,7 +19,6 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-            new Bmatzner\FoundationBundle\BmatznerFoundationBundle(),
             new LPDW\ClientBundle\LPDWClientBundle(),
             new LPDW\SncfBundle\LPDWSncfBundle(),
             new LPDW\FoursquareBundle\LPDWFoursquareBundle(),
