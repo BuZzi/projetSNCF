@@ -1350,16 +1350,16 @@
         },
         {
             "name": "willdurand/geocoder",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/Geocoder.git",
-                "reference": "1.3.0"
+                "reference": "1.4.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/Geocoder/zipball/1.3.0",
-                "reference": "1.3.0",
+                "url": "https://api.github.com/repos/willdurand/Geocoder/zipball/1.4.0",
+                "reference": "1.4.0",
                 "shasum": ""
             },
             "require": {
@@ -1406,10 +1406,12 @@
                 "geocoding",
                 "geoip"
             ],
-            "time": "2013-03-04 20:51:37"
+            "time": "2013-03-16 15:49:24"
         }
     ],
-    "packages-dev": null,
+    "packages-dev": [
+
+    ],
     "aliases": [
 
     ],
@@ -1417,5 +1419,11 @@
     "stability-flags": {
         "twig/extensions": 20,
         "kriswallsmith/assetic": 20
-    }
+    },
+    "platform": {
+        "php": ">=5.3.3"
+    },
+    "platform-dev": [
+
+    ]
 }
