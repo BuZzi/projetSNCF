@@ -3,14 +3,25 @@ A enlever après :
 latitude : {{ latitude }}
 longitude : {{ longitude }}
 -->
+<div class="row-fluid">
 
-<h4>Gares proches de votre position</h4>
-<ul class="nav nav-list">
-    {% for station in liste_stations %}
-        <li>
-            <a href="{{ path('lpdw_categories', {'name': station.name, 'latitude': station.latitude, 'longitude': station.longitude}) }}">
-                {{ station.name }}
-            </a>
-        </li>
-    {% endfor %}
-</ul>
+    <div class="span2"></div>
+
+    <div class="span8">
+
+        <h4>Gares proches de votre position</h4>
+        <ul class="nav nav-list">
+            {% for station in liste_stations %}
+                <li>
+                    <a href="{{ path('lpdw_categories', {'name': station.name, 'latitude': station.latitude, 'longitude': station.longitude}) }}">
+                        {{ station.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+    <div class="span2"></div>
+
+</div>

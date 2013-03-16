@@ -1,21 +1,29 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <div class="row">
-        <h5>Catégories des lieux autour de la gare : </h5>
-        <h4>
-            <i class="foundicon-flag"></i>
-            {{ nameStation }}
-        </h4>
+    <div class="row-fluid">
 
-        <dl class="vertical tabs">
-            {% for categorie in listCategories %}
-                <dd>
-                    <a href="{{ path('lpdw_venuesincategories', {'name': nameStation, 'latitude': latitude, 'longitude': longitude, 'categorie': categorie.id}) }}">
-                        {{ categorie.name }}
-                    </a>
-                </dd>
-            {% endfor %}
-        </dl>
+        <div class="span2"></div>
+
+        <div class="span8">
+            <h5>Catégories de lieux autour de la gare : </h5>
+            <h4>
+                <i class="foundicon-flag"></i>
+                {{ nameStation }}
+            </h4>
+
+            <ul class="nav nav-list">
+                {% for categorie in listCategories %}
+                    <li>
+                        <a href="{{ path('lpdw_venuesincategories', {'name': nameStation, 'latitude': latitude, 'longitude': longitude, 'categorie': categorie.id}) }}">
+                            {{ categorie.name }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="span2"></div>
+
     </div>
 {% endblock %}

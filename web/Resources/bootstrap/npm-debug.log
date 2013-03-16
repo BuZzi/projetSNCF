@@ -1,0 +1,52 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'c:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'lessc' ]
+2 info using npm@1.1.69
+3 info using node@v0.8.16
+4 verbose read json D:\Sites\projetSNCF\web\Resources\bootstrap\package.json
+5 warn package.json bootstrap@2.3.1 No README.md file found!
+6 verbose read json D:\Sites\projetSNCF\web\Resources\bootstrap\node_modules\connect\package.json
+7 verbose read json D:\Sites\projetSNCF\web\Resources\bootstrap\node_modules\hogan.js\package.json
+8 verbose read json D:\Sites\projetSNCF\web\Resources\bootstrap\node_modules\jshint\package.json
+9 verbose read json D:\Sites\projetSNCF\web\Resources\bootstrap\node_modules\recess\package.json
+10 verbose read json D:\Sites\projetSNCF\web\Resources\bootstrap\node_modules\uglify-js\package.json
+11 verbose from cache D:\Sites\projetSNCF\web\Resources\bootstrap\package.json
+12 verbose readDependencies using package.json deps
+13 verbose cache add [ 'lessc', null ]
+14 silly cache add name=undefined spec="lessc" args=["lessc",null]
+15 verbose parsed url { pathname: 'lessc', path: 'lessc', href: 'lessc' }
+16 silly lockFile 8b3a335c-lessc lessc
+17 verbose lock lessc C:\Users\Romain\AppData\Roaming\npm-cache\8b3a335c-lessc.lock
+18 silly lockFile 8b3a335c-lessc lessc
+19 verbose addNamed [ 'lessc', '' ]
+20 verbose addNamed [ null, '' ]
+21 silly lockFile a47c36bc-lessc lessc@
+22 verbose lock lessc@ C:\Users\Romain\AppData\Roaming\npm-cache\a47c36bc-lessc.lock
+23 silly addNameRange { name: 'lessc', range: '', hasData: false }
+24 verbose url raw lessc
+25 verbose url resolving [ 'https://registry.npmjs.org/', './lessc' ]
+26 verbose url resolved https://registry.npmjs.org/lessc
+27 info trying registry request attempt 1 at 00:16:35
+28 http GET https://registry.npmjs.org/lessc
+29 http 404 https://registry.npmjs.org/lessc
+30 silly registry.get cb [ 404,
+30 silly registry.get   { server: 'CouchDB/1.2.1 (Erlang OTP/R15B03)',
+30 silly registry.get     date: 'Sat, 16 Mar 2013 23:16:33 GMT',
+30 silly registry.get     'content-type': 'application/json',
+30 silly registry.get     'content-length': '52',
+30 silly registry.get     'cache-control': 'must-revalidate' } ]
+31 silly lockFile a47c36bc-lessc lessc@
+32 error 404 'lessc' is not in the npm registry.
+32 error 404 You should bug the author to publish it
+32 error 404
+32 error 404 Note that you can also install from a
+32 error 404 tarball, folder, or http url, or git url.
+33 error System Windows_NT 6.1.7601
+34 error command "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "lessc"
+35 error cwd D:\Sites\projetSNCF\web\Resources\bootstrap
+36 error node -v v0.8.16
+37 error npm -v 1.1.69
+38 error code E404
+39 verbose exit [ 1, true ]

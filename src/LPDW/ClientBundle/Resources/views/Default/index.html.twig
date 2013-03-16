@@ -12,8 +12,8 @@
     <!-- Google map image logo -->
     <div class="row-fluid">
         <h1 class="text-center">Where ?</h1>
-        <div id="logo row-fluid">
-            <figure id="span12 google-map-logo"></figure>
+        <div id="logo" class="row-fluid">
+            <figure class="span12" id="google-map-logo"></figure>
         </div>
         <hr />
     </div>
@@ -22,7 +22,7 @@
     <!-- Div qui contient les géolocalisations de l'utilisateur (à enlever après) une fois le bouton 'Trouve moi' cliqué -->
     <div class="row-fluid" id="infosposition">
         <div class="span2"></div>
-            <span class="span8" id="findMe">
+            <span class="span8 btn btn-primary" id="findMe">
                 <i class="foundicon-flag"></i>
                 Trouver les gares à proximité de ma position
             </span>
@@ -31,18 +31,17 @@
 
     <!-- Formulaire Recherche -->
     {% if form is defined %}
-
+        <hr />
         <div class="row-fluid">
-            <hr />
             <div class="span2"></div>
             <div class="span8 formulaire-recherche">
-                <h5><i class="foundicon-search"></i>Je recherche une gare en particulier </h5>
-                <form action="{{ path('lpdw_search') }}" method="post"  {{ form_enctype(form) }}>
-                    {{ form_widget(form) }}
-                    <div class="span12">
-                        <input class="btn btn-primary" type="submit" value="Rechercher"/>
-                    </div>
-                </form>
+                <div class="row-fluid">
+                    <h4 style="text-align: center;"><i class="foundicon-search"></i>Je recherche une gare en particulier </h4>
+                    <form action="{{ path('lpdw_search') }}" method="post"  {{ form_enctype(form) }}>
+                        {{ form_widget(form) }}
+                        <input class="btn btn-primary span10" type="submit" value="Rechercher"/>
+                    </form>
+                </div>
             </div>
             <div class="span2"></div>
         </div>
@@ -62,17 +61,21 @@
 
         {% if stations is defined %}
 
+            <div class="span2"></div>
             <!-- Si le formulaire a été soumis et des résultats ont été envoyés depuis le controlleur -->
-            <h4>Gares correspondantes à votre recherche</h4>
-            <ul class="span12 nav nav-list">
-                {% for station in stations %}
-                    <li>
-                        <a href="{{ path('lpdw_categories', {'name': station.name, 'latitude': station.latitude, 'longitude': station.longitude}) }}">
-                            {{ station.name }}
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
+            <div class="span8">
+                <h4>Gares correspondantes à votre recherche</h4>
+                <ul class="nav nav-list">
+                    {% for station in stations %}
+                        <li>
+                            <a href="{{ path('lpdw_categories', {'name': station.name, 'latitude': station.latitude, 'longitude': station.longitude}) }}">
+                                {{ station.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="span2"></div>
 
         {% endif %}
 
