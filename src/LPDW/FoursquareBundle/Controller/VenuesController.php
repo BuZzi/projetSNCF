@@ -50,12 +50,18 @@ class VenuesController extends Controller
     public function venuesInCategorieAction($name, $latitude, $longitude, $categorie)
     {
         $_aVenues = array();
-        $_oMap = $this->get('lpdw_google_map.google_map_manager');
+        //$_oMap = $this->get('lpdw_google_map.google_map_manager');
 
         // Récupère la clé client et le code secret pour pouvoir requêter dans l'API Foursquare
         $_sClient_key = $this->container->getParameter('foursquare_client_key');
         $_sClient_secret = $this->container->getParameter('foursquare_client_secret');
         $_oFoursquare = new FoursquareAPI($_sClient_key,$_sClient_secret); // Appel de library FoursquareApi
+
+        $_aStationVenue = array(
+            'name' => $name,
+            'latitude' =>$latitude,
+            'longitude' => $longitude,
+        );
 
         $_aParams = array(
             "ll" => "$latitude,$longitude",
@@ -66,6 +72,37 @@ class VenuesController extends Controller
         $response = $_oFoursquare->GetPublic("venues/explore",$_aParams); // On récupère ici la liste des lieux près de la gare
         $_oListVenues = json_decode($response); // JSON en objet
 
+        foreach($_oListVenues->response->groups as $_aListVenues){
+            $_aListVenues = $_aListVenues->items;
+        }
+
+        foreach($_aListVenues as $_oVenues){
+            //var_dump($_oVenues);
+            $name = $_oVenues->venue->name;
+            $latitude = $_oVenues->venue->location->lat;
+            $longitude = $_oVenues->venue->location->lng;
+            $address = $_oVenues->venue->location->address;
+            $postalCode = $_oVenues->venue->location->postalCode;
+            $city = $_oVenues->venue->location->city;
+            $state = $_oVenues->venue->location->state;
+            $country = $_oVenues->venue->location->country;
+            $distance = $_oVenues->venue->location->distance;
+
+            $_aVenues[] = array(
+                'name' => $name,
+                'latitude' =>$latitude,
+                'longitude' => $longitude,
+                'address' => $address,
+                'postalCode' => $postalCode,
+                'city' => $city,
+                'state' => $state,
+                'country' => $country,
+                'distance' => $distance,
+            );
+        }
+
+
+        /*
         foreach($_oListVenues->response->groups as $_aListVenues){
             $_aListVenues = $_aListVenues->items;
         }
@@ -93,10 +130,12 @@ class VenuesController extends Controller
             //var_dump($_oMarker);
             $_oFinalMap->addMarker($_oMarker); // ajoute le marker à la carte
             //var_dump($_oFinalMap);
-        }
+        }*/
+
         return array(
-            //'listVenues' => $listVenues,
-            'googleMap' => $_oFinalMap,
+            'listVenues' => $_aVenues,
+            'stationVenue' => $_aStationVenue,
+            //'googleMap' => $_oFinalMap,
         );
     }
 }
