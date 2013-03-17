@@ -66,6 +66,7 @@ class VenuesController extends Controller
         $_aParams = array(
             "ll" => "$latitude,$longitude",
             "categoryId" => $categorie,
+            "radius" => 1000,
         ); // paramètres de notre position et de la catégorie que l'on recherche
 
         // effectue une requête à une ressource public

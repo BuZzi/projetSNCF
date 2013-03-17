@@ -13,9 +13,12 @@
 {% endblock %}
 
  {% block body %}
-     <a class="btn btn-primary back-button" href="#">Retour</a>
+     <a class="btn btn-primary back-button" href="{{ path('lpdw_categories', {'name': stationVenue.name, 'latitude': stationVenue.latitude, 'longitude': stationVenue.longitude}) }}">
+         Retour
+     </a>
      {% block map %}
          <div id="map-canvas"></div>
+
      {% endblock %}
  {% endblock %}
 
@@ -29,26 +32,45 @@
 
         var map = new google.maps.Map(document.getElementById('map-canvas'), {
             zoom: 14, // set default zoom level
-            center: new google.maps.LatLng(-33.92, 151.25), // set center point (station point)
+            // set center point (station point)
+            center: new google.maps.LatLng( {{ stationVenue.latitude }}, {{ stationVenue.longitude }} ),
             disableDefaultUI: true, // disabled default UI
             mapTypeId: google.maps.MapTypeId.TERRAIN
-
         });
 
-        var $_oMarker; // define marker and i variable
-        //var i = 0;
+        // MARKER STATION
+
+        // Icone spécifique du marker
+
+        var $_oMarkerStation; // define marker variable for station
+        $_oMarkerStation = new google.maps.Marker({
+            position: new google.maps.LatLng( {{ stationVenue.latitude }}, {{ stationVenue.longitude }} ),
+            animation: google.maps.Animation.DROP,
+            map: map,
+            icon : 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+            title : "{{ stationVenue.name }}"
+        });
+
+        // MARKER VENUES
+        var $_oMarker; // define marker variable
+        var $_oInfoWindow = new google.maps.InfoWindow(); // define infowindow popup
 
         {% for Venue in listVenues %}
-
             $_oMarker = new google.maps.Marker({
                 position: new google.maps.LatLng( {{ Venue.latitude }}, {{ Venue.longitude }} ),
-                map: map
+                animation: google.maps.Animation.DROP,
+                map: map,
+                title : "{{ Venue.name }}"
             });
 
-            var $_oInfoWindow = new google.maps.InfoWindow(); // define infowindow popup
-
-            var $_sContent = "{{ Venue.name }}";
-
+            var $_sContent = "<div>"+
+                                "<h2>{{ Venue.name }}</h2>"+
+                                "{% if Venue.address is defined %}<p>{{ Venue.address }}</p>{% endif %}"+
+                                "{% if Venue.postalCode is defined %}<p>{{ Venue.postalCode }}</p>{% endif %}"+
+                                "{% if Venue.city is defined %}<p>{{ Venue.city }}</p>{% endif %}"+
+                                "{% if Venue.state is defined %}<p>{{ Venue.state }}, {{ Venue.country }}</p>{% endif %}"+
+                                "{% if Venue.distance is defined %}<p>Distance de la gare(en mètres) : {{ Venue.distance }}</p>{% endif %}"+
+                            "</div>";
             // appelle la fonction de bind (association marker - content - infowindow)
             bindInfoW($_oMarker, $_sContent, $_oInfoWindow);
 
