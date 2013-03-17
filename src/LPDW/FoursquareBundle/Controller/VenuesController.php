@@ -75,19 +75,47 @@ class VenuesController extends Controller
         foreach($_oListVenues->response->groups as $_aListVenues){
             $_aListVenues = $_aListVenues->items;
         }
-
+        $i = 0;
         foreach($_aListVenues as $_oVenues){
             //var_dump($_oVenues);
-            $name = $_oVenues->venue->name;
-            $latitude = $_oVenues->venue->location->lat;
-            $longitude = $_oVenues->venue->location->lng;
-            $address = $_oVenues->venue->location->address;
-            $postalCode = $_oVenues->venue->location->postalCode;
-            $city = $_oVenues->venue->location->city;
-            $state = $_oVenues->venue->location->state;
-            $country = $_oVenues->venue->location->country;
-            $distance = $_oVenues->venue->location->distance;
-
+            if(isset($_oVenues->venue->name)){
+                $name = $_oVenues->venue->name;
+                $_aVenues[$i]['name'] = $name;
+            }
+            if(isset($_oVenues->venue->location->lat)){
+                $latitude = $_oVenues->venue->location->lat;
+                $_aVenues[$i]['latitude'] = $latitude;
+            }
+            if(isset($_oVenues->venue->location->lng)){
+                $longitude = $_oVenues->venue->location->lng;
+                $_aVenues[$i]['longitude'] = $longitude;
+            }
+            if(isset($_oVenues->venue->location->address)){
+                $address = $_oVenues->venue->location->address;
+                $_aVenues[$i]['address'] = $address;
+            }
+            if(isset($_oVenues->venue->location->postalCode)){
+                $postalCode = $_oVenues->venue->location->postalCode;
+                $_aVenues[$i]['postalCode'] = $postalCode;
+            }
+            if(isset($_oVenues->venue->location->city)){
+                $city = $_oVenues->venue->location->city;
+                $_aVenues[$i]['city'] = $city;
+            }
+            if(isset($_oVenues->venue->location->state)){
+                $state = $_oVenues->venue->location->state;
+                $_aVenues[$i]['state'] = $state;
+            }
+            if(isset($_oVenues->venue->location->country)){
+                $country = $_oVenues->venue->location->country;
+                $_aVenues[$i]['country'] = $country;
+            }
+            if(isset($_oVenues->venue->location->distance)){
+                $distance = $_oVenues->venue->location->distance;
+                $_aVenues[$i]['distance'] = $distance;
+            }
+            $i++;
+/*
             $_aVenues[] = array(
                 'name' => $name,
                 'latitude' =>$latitude,
@@ -98,9 +126,9 @@ class VenuesController extends Controller
                 'state' => $state,
                 'country' => $country,
                 'distance' => $distance,
-            );
+            );*/
         }
-
+        //var_dump($_aVenues);
 
         /*
         foreach($_oListVenues->response->groups as $_aListVenues){
