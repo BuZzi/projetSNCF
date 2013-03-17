@@ -26,9 +26,6 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        var locations = [
-            {{ listVenues }}
-        ];
 
         var map = new google.maps.Map(document.getElementById('map-canvas'), {
             zoom: 14, // set default zoom level
@@ -38,22 +35,33 @@
 
         });
 
-        var infowindow = new google.maps.InfoWindow(); // define infowindow popup
+        var $_oMarker; // define marker and i variable
+        //var i = 0;
 
-        var marker, i;
+        {% for Venue in listVenues %}
 
-        for (i = 0; i < locations.length; i++) {
-            marker = new google.maps.Marker({
-                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            $_oMarker = new google.maps.Marker({
+                position: new google.maps.LatLng( {{ Venue.latitude }}, {{ Venue.longitude }} ),
                 map: map
             });
 
-            google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                return function() {
-                    infowindow.setContent('yoyo');
-                    infowindow.open(map, marker);
-                }
-            })(marker, i));
+            var $_oInfoWindow = new google.maps.InfoWindow(); // define infowindow popup
+
+            var $_sContent = "{{ Venue.name }}";
+
+            // appelle la fonction de bind (association marker - content - infowindow)
+            bindInfoW($_oMarker, $_sContent, $_oInfoWindow);
+
+        {% endfor %}
+
+        // fonction pour bind le bousin
+        function bindInfoW($_oMarker, $_sContent, $_oInfoWindow)
+        {
+            google.maps.event.addListener($_oMarker, 'click', function() {
+                $_oInfoWindow.setContent($_sContent);
+                $_oInfoWindow.open(map, $_oMarker);
+            });
         }
+
     </script>
 {% endblock %}
