@@ -94,8 +94,6 @@ class VenuesController extends Controller
             $_oFinalMap->addMarker($_oMarker); // ajoute le marker à la carte
             //var_dump($_oFinalMap);
         }
-
-       var_dump($_oFinalMap);
         return array(
             //'listVenues' => $listVenues,
             'googleMap' => $_oFinalMap,
