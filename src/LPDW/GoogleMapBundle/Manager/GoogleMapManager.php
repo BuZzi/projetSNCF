@@ -38,12 +38,11 @@ class GoogleMapManager
         $_oMap->setAutoZoom(true);
 
         $_oMap->setCenter($_iLatitude, $_iLongitude, true);
-        $_oMap->setMapOption('zoom', 4);
+        //$_oMap->setMapOption('zoom', 4);
 
         //$_oMap->setBound(-2.1, -3.9, 2.6, 1.4, true, true);
 
-        $_oMap->setMapOption('mapTypeId', MapTypeId::HYBRID);
-        $_oMap->setMapOption('mapTypeId', 'terrain');
+        $_oMap->setMapOption('mapTypeId', MapTypeId::ROADMAP);
 
         $_oMap->setMapOptions(array(
             'disableDefaultUI' => true,
@@ -65,13 +64,13 @@ class GoogleMapManager
         $_oMarker = $this->_oMarker;
 
         // Configure your marker options
-        //$_oMarker->setPrefixJavascriptVariable('marker_');
+        $_oMarker->setPrefixJavascriptVariable('marker_');
 
         $_oMarker->setPosition($_aVenue['latitude'], $_aVenue['longitude'], true);
         $_oMarker->setAnimation(Animation::DROP);
         $_oMarker->setOptions(array(
             'clickable' => true,
-            'flat' => true
+            'flat' => true,
         ));
 
         return $_oMarker;

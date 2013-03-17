@@ -49,10 +49,12 @@ class VenuesController extends Controller
      */
     public function venuesInCategorieAction($name, $latitude, $longitude, $categorie)
     {
+        $_aVenues = array();
+        $_oMap = $this->get('lpdw_google_map.google_map_manager');
+
         // Récupère la clé client et le code secret pour pouvoir requêter dans l'API Foursquare
         $_sClient_key = $this->container->getParameter('foursquare_client_key');
         $_sClient_secret = $this->container->getParameter('foursquare_client_secret');
-
         $_oFoursquare = new FoursquareAPI($_sClient_key,$_sClient_secret); // Appel de library FoursquareApi
 
         $_aParams = array(
@@ -62,23 +64,22 @@ class VenuesController extends Controller
 
         // effectue une requête à une ressource public
         $response = $_oFoursquare->GetPublic("venues/explore",$_aParams); // On récupère ici la liste des lieux près de la gare
-        $_oListVenues = json_decode($response);
+        $_oListVenues = json_decode($response); // JSON en objet
 
         foreach($_oListVenues->response->groups as $_aListVenues){
             $_aListVenues = $_aListVenues->items;
         }
 
         // Construit la carte et affiche les lieux d'intérêt autour de notre position
-        $_oMap = $this->get('lpdw_google_map.google_map_manager');
         $_oFinalMap = $_oMap->buildMap($latitude, $longitude);
-        $_aVenues = array(
-            'latitude' => $latitude,
-            'longitude' => $longitude,
-        );
-        $_oMarker = $_oMap->createMarker($_aVenues);
-        // Add your marker to the map
-        $_oFinalMap->addMarker($_oMarker);
 
+        // Ajoute le marker de la gare où on se trouve
+        $_aVenues['latitude'] = $latitude;
+        $_aVenues['longitude'] = $longitude;
+        $_oMarker = $_oMap->createMarker($_aVenues);// créé le marker
+        $_oFinalMap->addMarker($_oMarker);// ajoute le marker à la carte
+
+        // boucle sur les lieux autour de la garen créé un marker pour chaque et l'ajoute à la carte
         foreach($_aListVenues as $_oVenues){
             //var_dump($_oVenues);
             $latitude = $_oVenues->venue->location->lat;
@@ -88,12 +89,13 @@ class VenuesController extends Controller
                 'longitude' => $longitude,
             );
 
-            $_oMarker = $_oMap->createMarker($_aVenues);
-            // Add your marker to the map
-            $_oFinalMap->addMarker($_oMarker);
+            $_oMarker = $_oMap->createMarker($_aVenues); // Créé le marker
+            //var_dump($_oMarker);
+            $_oFinalMap->addMarker($_oMarker); // ajoute le marker à la carte
+            //var_dump($_oFinalMap);
         }
 
-        var_dump($_oFinalMap);
+       var_dump($_oFinalMap);
         return array(
             //'listVenues' => $listVenues,
             'googleMap' => $_oFinalMap,
