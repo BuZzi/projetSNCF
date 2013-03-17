@@ -5,19 +5,23 @@
     <style type="text/css">
         html { height: 100% }
         body { height: 100%; margin: 0; padding: 0 }
-        #map-canvas { height: 100% }
+        #map-canvas { height: 100%; }
     </style>
     <script type="text/javascript"
-            src="https://maps.googleapis.com/maps/api/js?sensor=false">
+            src="https://maps.googleapis.com/maps/api/js?sensor=false"> // script google
     </script>
 {% endblock %}
 
  {% block body %}
-    body
+     <a class="btn btn-primary back-button" href="#">Retour</a>
      {% block map %}
          <div id="map-canvas"></div>
      {% endblock %}
  {% endblock %}
+
+
+{% block footer %}
+{% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
@@ -31,12 +35,14 @@
         ];
 
         var map = new google.maps.Map(document.getElementById('map-canvas'), {
-            zoom: 10,
-            center: new google.maps.LatLng(-33.92, 151.25),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            zoom: 14, // set default zoom level
+            center: new google.maps.LatLng(-33.92, 151.25), // set center point (station point)
+            disableDefaultUI: true, // disabled default UI
+            mapTypeId: google.maps.MapTypeId.TERRAIN
+
         });
 
-        var infowindow = new google.maps.InfoWindow();
+        var infowindow = new google.maps.InfoWindow(); // define infowindow popup
 
         var marker, i;
 
@@ -48,7 +54,7 @@
 
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
                 return function() {
-                    infowindow.setContent(locations[i][0]);
+                    infowindow.setContent('yoyo');
                     infowindow.open(map, marker);
                 }
             })(marker, i));

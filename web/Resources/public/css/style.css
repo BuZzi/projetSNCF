@@ -1,4 +1,4 @@
-/* font-face */
+/* ICONES FONT FACE */
 @font-face {
     font-family: "GeneralFoundicons";
     src: url("../fonts/general_foundicons.eot");
@@ -213,4 +213,10 @@
 
 .foundicon-search:before {
     content: "\f02e";
+}
+
+.back-button{
+    margin-bottom: 15px!important; /* override bootstrap for this button class */
+    margin-left: 5px;
+    margin-top: 15px;
 }
