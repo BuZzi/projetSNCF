@@ -3,14 +3,15 @@
 {% block body %}
     <div class="row-fluid">
 
-        <div class="span2"></div>
+        <div class="span2 hidden-phone"></div>
 
         <div class="span8">
-            <h5>Catégories de lieux autour de la gare : </h5>
             <h4>
                 <i class="foundicon-flag"></i>
                 {{ nameStation }}
             </h4>
+
+            <h5>Catégories de lieux autour de cette gare : </h5>
 
             <ul class="nav nav-list">
                 {% for categorie in listCategories %}
@@ -23,7 +24,7 @@
             </ul>
         </div>
 
-        <div class="span2"></div>
+        <div class="span2 hidden-phone"></div>
 
     </div>
 {% endblock %}
