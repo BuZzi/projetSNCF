@@ -27,11 +27,7 @@
     {{ parent() }}
     <script type="text/javascript">
         var locations = [
-            ['Bondi Beach', -33.890542, 151.274856, 4],
-            ['Coogee Beach', -33.923036, 151.259052, 5],
-            ['Cronulla Beach', -34.028249, 151.157507, 3],
-            ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-            ['Saint Denis Beach', 48.93547, 2.34544, 1]
+            {{ listVenues }}
         ];
 
         var map = new google.maps.Map(document.getElementById('map-canvas'), {
