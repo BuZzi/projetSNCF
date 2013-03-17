@@ -55,33 +55,47 @@ class VenuesController extends Controller
 
         $_oFoursquare = new FoursquareAPI($_sClient_key,$_sClient_secret); // Appel de library FoursquareApi
 
-        $params = array(
+        $_aParams = array(
             "ll" => "$latitude,$longitude",
             "categoryId" => $categorie,
         ); // paramètres de notre position et de la catégorie que l'on recherche
 
         // effectue une requête à une ressource public
-        $response = $_oFoursquare->GetPublic("venues/explore",$params); // On récupère ici la liste des lieux près de la gare
-        $listVenues = json_decode($response);
+        $response = $_oFoursquare->GetPublic("venues/explore",$_aParams); // On récupère ici la liste des lieux près de la gare
+        $_oListVenues = json_decode($response);
 
-        //var_dump($listVenues);
-        $_aVenues = array(
-            'latitude' => $latitude,
-            'longitude' => $longitude,
-        );
+        foreach($_oListVenues->response->groups as $_aListVenues){
+            $_aListVenues = $_aListVenues->items;
+        }
 
         // Construit la carte et affiche les lieux d'intérêt autour de notre position
         $_oMap = $this->get('lpdw_google_map.google_map_manager');
         $_oFinalMap = $_oMap->buildMap($latitude, $longitude);
-
+        $_aVenues = array(
+            'latitude' => $latitude,
+            'longitude' => $longitude,
+        );
         $_oMarker = $_oMap->createMarker($_aVenues);
-
         // Add your marker to the map
         $_oFinalMap->addMarker($_oMarker);
 
+        foreach($_aListVenues as $_oVenues){
+            //var_dump($_oVenues);
+            $latitude = $_oVenues->venue->location->lat;
+            $longitude = $_oVenues->venue->location->lng;
+            $_aVenues = array(
+                'latitude' => $latitude,
+                'longitude' => $longitude,
+            );
 
+            $_oMarker = $_oMap->createMarker($_aVenues);
+            // Add your marker to the map
+            $_oFinalMap->addMarker($_oMarker);
+        }
+
+        var_dump($_oFinalMap);
         return array(
-            'listVenues' => $listVenues,
+            //'listVenues' => $listVenues,
             'googleMap' => $_oFinalMap,
         );
     }
