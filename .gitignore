@@ -24,3 +24,6 @@ composer.phar
 /app/logs/*
 /vendor/
 /app/config/parameters.ini
+
+# Sass
+.sass-cache/*
