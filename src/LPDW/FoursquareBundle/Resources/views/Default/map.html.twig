@@ -2,12 +2,9 @@
 
 {% block head %}
     {{ parent() }}
-    <style type="text/css">
-        #map-canvas{ position: absolute; left: 0;}
-    </style>
-    <script type="text/javascript"
-            src="https://maps.googleapis.com/maps/api/js?sensor=false"> // script google map
-    </script>
+    {% block stylesheets %}
+        {{ google_map_css(googleMap) }}
+    {% endblock %}
 {% endblock %}
 
  {% block body %}
@@ -15,8 +12,7 @@
          Retour
      </a>
      {% block map %}
-         <div id="map-canvas"></div>
-
+         {{ google_map_container(googleMap) }}
      {% endblock %}
  {% endblock %}
 
@@ -26,73 +22,6 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript">
+    {{ google_map_js(googleMap) }}
 
-        var $_iViewportHeight = document.documentElement.clientHeight - 60;
-        var $_iViewportWidth = document.documentElement.clientWidth;
-
-        var mapcontainer = document.getElementById('map-canvas');
-        mapcontainer.style.height = $_iViewportHeight + 'px';
-        mapcontainer.style.width = $_iViewportWidth + 'px';
-
-        var map = new google.maps.Map(document.getElementById('map-canvas'), {
-            zoom: 14, // set default zoom level
-            // set center point (station point)
-            center: new google.maps.LatLng( {{ stationVenue.latitude }}, {{ stationVenue.longitude }} ),
-            disableDefaultUI: true, // disabled default UI
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
-
-        // MARKER STATION
-        var $_oMarkerStation; // define marker variable for station
-        $_oMarkerStation = new google.maps.Marker({
-            position: new google.maps.LatLng( {{ stationVenue.latitude }}, {{ stationVenue.longitude }} ),
-            animation: google.maps.Animation.DROP,
-            map: map,
-            icon : 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png', // Icone spécifique du marker
-            title : "{{ stationVenue.name }}"
-        });
-
-
-        // MARKER VENUES
-        var $_oMarker; // define marker variable
-        var $_oInfoWindow = new google.maps.InfoWindow(); // define infowindow popup
-
-        //INFOW WINDOW STATION
-        google.maps.event.addListener($_oMarkerStation, 'click', function() {
-            $_oInfoWindow.setContent("Gare : <b>{{ stationVenue.name }}</b>");
-            $_oInfoWindow.open(map, $_oMarker);
-        });
-
-        {% for Venue in listVenues %}
-            $_oMarker = new google.maps.Marker({
-                position: new google.maps.LatLng( {{ Venue.latitude }}, {{ Venue.longitude }} ),
-                animation: google.maps.Animation.DROP,
-                map: map,
-                title : "{{ Venue.name }}"
-            });
-
-            var $_sContent = "<div class='infowindow'>"+
-                                "<h4>{{ Venue.name }}</h4>"+
-                                "{% if Venue.address is defined %}<span>{{ Venue.address }}</span><br>{% endif %}"+
-                                "{% if Venue.postalCode is defined %}<span>{{ Venue.postalCode }}</span><br>{% endif %}"+
-                                "{% if Venue.city is defined %}<span>{{ Venue.city }}</span><br>{% endif %}"+
-                                "{% if Venue.state is defined %}<span>{{ Venue.state }}, {{ Venue.country }}</span><br>{% endif %}"+
-                                "{% if Venue.distance is defined %}<span>Distance : {{ Venue.distance }} mètres</span>{% endif %}"+
-                            "</div>";
-            // appelle la fonction de bind (association marker - content - infowindow)
-            bindInfoW($_oMarker, $_sContent, $_oInfoWindow);
-
-        {% endfor %}
-
-        // fonction pour bind le bousin
-        function bindInfoW($_oMarker, $_sContent, $_oInfoWindow)
-        {
-            google.maps.event.addListener($_oMarker, 'click', function() {
-                $_oInfoWindow.setContent($_sContent);
-                $_oInfoWindow.open(map, $_oMarker);
-            });
-        }
-
-    </script>
 {% endblock %}

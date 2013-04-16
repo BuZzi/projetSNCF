@@ -9,20 +9,20 @@
 namespace LPDW\GoogleMapBundle\Manager;
 
 use Ivory\GoogleMapBundle\IvoryGoogleMapBundle,
-    Ivory\GoogleMapBundle\Model\MapTypeId,
-    Ivory\GoogleMapBundle\Model\Map,
-    Ivory\GoogleMapBundle\Model\Overlays\Marker,
-    Ivory\GoogleMapBundle\Model\Overlays\Animation;
+    Ivory\GoogleMap\Map,
+    Ivory\GoogleMap\MapTypeId,
+    Ivory\GoogleMap\Overlays\Marker,
+    Ivory\GoogleMap\Overlays\MarkerImage,
+    Ivory\GoogleMap\Overlays\InfoWindow,
+    Ivory\GoogleMap\Overlays\Animation;
 
 class GoogleMapManager
 {
 
     protected $_oMap;
-    protected $_oMarker;
 
-    public function __construct(Map $_oMap, Marker $_oMarker){
+    public function __construct(Map $_oMap){
         $this->_oMap = $_oMap;
-        $this->_oMarker = $_oMarker;
     }
 
     public function buildMap($_iLatitude, $_iLongitude){
@@ -30,7 +30,7 @@ class GoogleMapManager
         $_oMap = $this->_oMap;
 
         // Configure your map options
-        //$_oMap->setPrefixJavascriptVariable('map_');
+        $_oMap->setPrefixJavascriptVariable('map_');
         //$_oMap->setHtmlContainerId('map_canvas');
 
         $_oMap->setAsync(false);
@@ -59,13 +59,27 @@ class GoogleMapManager
         return $_oMap;
     }
 
-    public function createMarker($_aVenue){
+    public function createMarker($_aVenue, $_mStationMarker=false){
 
-        $_oMarker = $this->_oMarker;
+        $_oMarker = new Marker();
 
-        // Configure your marker options
+        // Configure les options du marker
         $_oMarker->setPrefixJavascriptVariable('marker_');
 
+        // Si c'est le marker de la station où nous nous trouvons, on créé une image spécifique
+        if($_mStationMarker == true){
+            $_oMarkerImage = new MarkerImage();
+
+            // Configure les options du markerImage
+            $_oMarkerImage->setPrefixJavascriptVariable('marker_image_');
+            $_oMarkerImage->setUrl('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
+            //$_oMarkerImage->setAnchor(20, 34);
+            //$_oMarkerImage->setOrigin(0, 0);
+            //$_oMarkerImage->setSize(20, 34, "px", "px");
+            //$_oMarkerImage->setScaledSize(20, 34, "px", "px");
+
+            $_oMarker->setIcon($_oMarkerImage);
+        }
         $_oMarker->setPosition($_aVenue['latitude'], $_aVenue['longitude'], true);
         $_oMarker->setAnimation(Animation::DROP);
         $_oMarker->setOptions(array(
@@ -74,6 +88,39 @@ class GoogleMapManager
         ));
 
         return $_oMarker;
+    }
+
+    public function createInfoWindow($_aInfosContent){
+
+        $_oInfoWindow = new InfoWindow();
+
+        // Configure les options de la fenêtre d'infos
+        $_oInfoWindow->setPrefixJavascriptVariable('info_window_');
+        $_oInfoWindow->setPosition(0, 0, true);
+        $_oInfoWindow->setPixelOffset(1.1, 2.1, 'px', 'pt');
+    // A CONTINUER !!!
+        var $_sContent = "<div class='infowindow'>"+
+                            "<h4>$_aInfosContent['']</h4>"+
+                            "{% if Venue.address is defined %}<span>{{ Venue.address }}</span><br>{% endif %}"+
+                            "{% if Venue.postalCode is defined %}<span>{{ Venue.postalCode }}</span><br>{% endif %}"+
+                            "{% if Venue.city is defined %}<span>{{ Venue.city }}</span><br>{% endif %}"+
+                            "{% if Venue.state is defined %}<span>{{ Venue.state }}, {{ Venue.country }}</span><br>{% endif %}"+
+                            "{% if Venue.distance is defined %}<span>Distance : {{ Venue.distance }} mètres</span>{% endif %}"+
+                         "</div>";
+
+        $_oInfoWindow->setContent($_sContent);
+
+        $_oInfoWindow->setOpen(false);
+        $_oInfoWindow->setAutoOpen(true);
+        $_oInfoWindow->setOpenEvent(MouseEvent::CLICK);
+        $_oInfoWindow->setAutoClose(false);
+        $_oInfoWindow->setOptions(array(
+            'disableAutoPan' => true,
+            'zIndex'         => 10,
+        ));
+
+        return $_oInfoWindow;
+
     }
 
 }

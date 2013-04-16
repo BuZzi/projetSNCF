@@ -50,7 +50,7 @@ class VenuesController extends Controller
     public function venuesInCategorieAction($name, $latitude, $longitude, $categorie)
     {
         $_aVenues = array();
-        //$_oMap = $this->get('lpdw_google_map.google_map_manager');
+        $_oMap = $this->get('lpdw_google_map.google_map_manager');
 
         // Récupère la clé client et le code secret pour pouvoir requêter dans l'API Foursquare
         $_sClient_key = $this->container->getParameter('foursquare_client_key');
@@ -76,47 +76,8 @@ class VenuesController extends Controller
         foreach($_oListVenues->response->groups as $_aListVenues){
             $_aListVenues = $_aListVenues->items;
         }
-        $i = 0;
-        foreach($_aListVenues as $_oVenues){
-            //var_dump($_oVenues);
-            if(isset($_oVenues->venue->name)){
-                $name = $_oVenues->venue->name;
-                $_aVenues[$i]['name'] = $name;
-            }
-            if(isset($_oVenues->venue->location->lat)){
-                $latitude = $_oVenues->venue->location->lat;
-                $_aVenues[$i]['latitude'] = $latitude;
-            }
-            if(isset($_oVenues->venue->location->lng)){
-                $longitude = $_oVenues->venue->location->lng;
-                $_aVenues[$i]['longitude'] = $longitude;
-            }
-            if(isset($_oVenues->venue->location->address)){
-                $address = $_oVenues->venue->location->address;
-                $_aVenues[$i]['address'] = $address;
-            }
-            if(isset($_oVenues->venue->location->postalCode)){
-                $postalCode = $_oVenues->venue->location->postalCode;
-                $_aVenues[$i]['postalCode'] = $postalCode;
-            }
-            if(isset($_oVenues->venue->location->city)){
-                $city = $_oVenues->venue->location->city;
-                $_aVenues[$i]['city'] = $city;
-            }
-            if(isset($_oVenues->venue->location->state)){
-                $state = $_oVenues->venue->location->state;
-                $_aVenues[$i]['state'] = $state;
-            }
-            if(isset($_oVenues->venue->location->country)){
-                $country = $_oVenues->venue->location->country;
-                $_aVenues[$i]['country'] = $country;
-            }
-            if(isset($_oVenues->venue->location->distance)){
-                $distance = $_oVenues->venue->location->distance;
-                $_aVenues[$i]['distance'] = $distance;
-            }
-            $i++;
-/*
+
+       /*
             $_aVenues[] = array(
                 'name' => $name,
                 'latitude' =>$latitude,
@@ -127,14 +88,8 @@ class VenuesController extends Controller
                 'state' => $state,
                 'country' => $country,
                 'distance' => $distance,
-            );*/
-        }
-        //var_dump($_aVenues);
-
-        /*
-        foreach($_oListVenues->response->groups as $_aListVenues){
-            $_aListVenues = $_aListVenues->items;
-        }
+            );
+        */
 
         // Construit la carte et affiche les lieux d'intérêt autour de notre position
         $_oFinalMap = $_oMap->buildMap($latitude, $longitude);
@@ -142,29 +97,63 @@ class VenuesController extends Controller
         // Ajoute le marker de la gare où on se trouve
         $_aVenues['latitude'] = $latitude;
         $_aVenues['longitude'] = $longitude;
-        $_oMarker = $_oMap->createMarker($_aVenues);// créé le marker
-        $_oFinalMap->addMarker($_oMarker);// ajoute le marker à la carte
+        $_oMarker = $_oMap->createMarker($_aVenues, true);// Créé le marker de la gare où on se trouve
+        $_oFinalMap->addMarker($_oMarker);// Ajoute le marker à la carte
 
-        // boucle sur les lieux autour de la garen créé un marker pour chaque et l'ajoute à la carte
+        // Boucle sur les lieux autour de la gare, créé un marker pour chaque et l'ajoute à la carte
         foreach($_aListVenues as $_oVenues){
-            //var_dump($_oVenues);
-            $latitude = $_oVenues->venue->location->lat;
-            $longitude = $_oVenues->venue->location->lng;
-            $_aVenues = array(
-                'latitude' => $latitude,
-                'longitude' => $longitude,
-            );
+
+            if(isset($_oVenues->venue->name)){
+                $name = $_oVenues->venue->name;
+                $_aVenues['name'] = $name;
+            }
+            if(isset($_oVenues->venue->location->lat)){
+                $latitude = $_oVenues->venue->location->lat;
+                $_aVenues['latitude'] = $latitude;
+            }
+            if(isset($_oVenues->venue->location->lng)){
+                $longitude = $_oVenues->venue->location->lng;
+                $_aVenues['longitude'] = $longitude;
+            }
+            if(isset($_oVenues->venue->location->address)){
+                $address = $_oVenues->venue->location->address;
+                $_aVenues['address'] = $address;
+            }
+            if(isset($_oVenues->venue->location->postalCode)){
+                $postalCode = $_oVenues->venue->location->postalCode;
+                $_aVenues['postalCode'] = $postalCode;
+            }
+            if(isset($_oVenues->venue->location->city)){
+                $city = $_oVenues->venue->location->city;
+                $_aVenues['city'] = $city;
+            }
+            if(isset($_oVenues->venue->location->state)){
+                $state = $_oVenues->venue->location->state;
+                $_aVenues['state'] = $state;
+            }
+            if(isset($_oVenues->venue->location->country)){
+                $country = $_oVenues->venue->location->country;
+                $_aVenues['country'] = $country;
+            }
+            if(isset($_oVenues->venue->location->distance)){
+                $distance = $_oVenues->venue->location->distance;
+                $_aVenues['distance'] = $distance;
+            }
 
             $_oMarker = $_oMap->createMarker($_aVenues); // Créé le marker
-            //var_dump($_oMarker);
+            $_oInfoWindow = $_oMap->createInfoWindow($_aVenues); // créé l'infoWindow
+
+            $_oMarker->setInfoWindow($_oInfoWindow); // ajoute l'infoWindow au marker
+
             $_oFinalMap->addMarker($_oMarker); // ajoute le marker à la carte
-            //var_dump($_oFinalMap);
-        }*/
+            $_oFinalMap->addInfoWindow($_oInfoWindow); // ajoute l'infoWindow à la carte
+
+        }
 
         return array(
             'listVenues' => $_aVenues,
             'stationVenue' => $_aStationVenue,
-            //'googleMap' => $_oFinalMap,
+            'googleMap' => $_oFinalMap,
         );
     }
 }
