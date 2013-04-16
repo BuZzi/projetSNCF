@@ -19,7 +19,8 @@
         "jms/security-extra-bundle": "1.2.*",
         "jms/di-extra-bundle": "1.1.*",
         "kriswallsmith/assetic": "1.1.*@dev",
-        "egeloen/google-map-bundle": "*",
+        "egeloen/google-map-bundle": "1.1.1",
+        "willdurand/geocoder": "1.4.0",
         "friendsofsymfony/jsrouting-bundle": "1.1.*"
     },
     "scripts": {

@@ -15,17 +15,4 @@
         </service>
     </services>
 
-    <!--
-    <parameters>
-        <parameter key="lpdw_google_map.example.class">LPDW\GoogleMapBundle\Example</parameter>
-    </parameters>
-
-    <services>
-        <service id="lpdw_google_map.example" class="%lpdw_google_map.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
-        </service>
-    </services>
-    -->
 </container>
