@@ -1,11 +1,8 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <div class="row-fluid">
-
-        <div class="span2 hidden-phone"></div>
-
-        <div class="span8">
+    <div class="row">
+        <div class="large-10 small-10 columns">
             <h4>
                 <i class="foundicon-flag"></i>
                 {{ nameStation }}
@@ -24,16 +21,14 @@
             </ul>
 
             <hr />
-
-            <h5>Vous recherchez une autre gare ? </h5>
-
-            <a class="btn btn-primary" href="{{ path('lpdw_search') }}">
-                Retour
-            </a>
-
         </div>
 
-        <div class="span2 hidden-phone"></div>
-
+        <div class="large-2 small-2 columns">
+            <div class="right">
+                <a class="twelve columns btn btn-large btn-block" href="{{ path('lpdw_search') }}">
+                    Retour
+                </a>
+            </div>
+        </div>
     </div>
 {% endblock %}

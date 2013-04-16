@@ -8,13 +8,15 @@
             <title>{% block title %}projet SNCF{% endblock %}</title>
 
             {% block stylesheets %}
-                <link rel="stylesheet" type="text/css" href="{{ asset('Resources/public/css/style.css') }}" />
+                <link rel="stylesheet" type="text/css" href="{{ asset('Resources/public/stylesheets/style.css') }}" />
                 <link rel="stylesheet" type="text/css" href="{{ asset('Resources/foundation/stylesheets/app.css') }}" />
-                <link rel="stylesheet" type="text/css" href="{{ asset('Resources/foundation/stylesheets/normalize.css') }}" />
+
+                <link rel="stylesheet" type="text/css" href="{{ asset('Resources/foundation/stylesheets/flat-ui.css') }}" />
             {% endblock %}
 
             <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
             <link type="text/plain" rel="author" href="{{ asset('humans.txt') }}" />
+            <script type="text/javascript" src="{{ asset('Resources/foundation/javascripts/vendor/custom.modernizr.js') }}"></script>
         {% endblock %}
     </head>
 
@@ -27,13 +29,13 @@
 
         <!-- Footer -->
         {% block footer %}
-            <footer class="row-fluid">
-                <div class="span12">
+            <footer class="row">
+                <div class="twelve columns">
                     <hr />
-                    <div class="row-fluid">
-                        <div class="span6 hidden-phone">
+                    <div class="row">
+                        <div class="six columns hidden-phone">
                         </div>
-                        <div class="span6">
+                        <div class="six columns">
                             <p>&copy; Copyright Jaguar Gorgone pour les puristes </p>
                         </div>
                     </div>
@@ -46,7 +48,9 @@
         {% block javascripts %}
             <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
             <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
-            <script type="text/javascript" src="{{ asset('Resources/public/js/jquery.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('Resources/foundation/javascripts/vendor/jquery.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('Resources/foundation/javascripts/vendor/zepto.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('Resources/foundation/javascripts/foundation/foundation.js') }}"></script>
             <script type="text/javascript" src="{{ asset('Resources/foundation/javascripts/foundation/foundation.alerts.js') }}"></script>
         {% endblock %}
         <!-- End Javascript -->
