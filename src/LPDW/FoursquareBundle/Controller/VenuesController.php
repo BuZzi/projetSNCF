@@ -106,38 +106,64 @@ class VenuesController extends Controller
             if(isset($_oVenues->venue->name)){
                 $name = $_oVenues->venue->name;
                 $_aVenues['name'] = $name;
+            } else {
+                $_aVenues['name'] = '';
             }
+
             if(isset($_oVenues->venue->location->lat)){
                 $latitude = $_oVenues->venue->location->lat;
                 $_aVenues['latitude'] = $latitude;
+            } else {
+                $_aVenues['latitude'] = '';
             }
+
             if(isset($_oVenues->venue->location->lng)){
                 $longitude = $_oVenues->venue->location->lng;
                 $_aVenues['longitude'] = $longitude;
+            } else {
+                $_aVenues['longitude'] = '';
             }
+
             if(isset($_oVenues->venue->location->address)){
                 $address = $_oVenues->venue->location->address;
                 $_aVenues['address'] = $address;
+            } else {
+                $_aVenues['address'] = '';
             }
+
             if(isset($_oVenues->venue->location->postalCode)){
                 $postalCode = $_oVenues->venue->location->postalCode;
                 $_aVenues['postalCode'] = $postalCode;
+            } else {
+                $_aVenues['postalCode'] = '';
             }
+
             if(isset($_oVenues->venue->location->city)){
                 $city = $_oVenues->venue->location->city;
                 $_aVenues['city'] = $city;
+            } else {
+                $_aVenues['city'] = '';
             }
+
             if(isset($_oVenues->venue->location->state)){
                 $state = $_oVenues->venue->location->state;
                 $_aVenues['state'] = $state;
+            } else {
+                $_aVenues['state'] = '';
             }
+
             if(isset($_oVenues->venue->location->country)){
                 $country = $_oVenues->venue->location->country;
                 $_aVenues['country'] = $country;
+            } else {
+                $_aVenues['country'] = '';
             }
+
             if(isset($_oVenues->venue->location->distance)){
                 $distance = $_oVenues->venue->location->distance;
                 $_aVenues['distance'] = $distance;
+            } else {
+                $_aVenues['distance'] = '';
             }
 
             $_oMarker = $_oMap->createMarker($_aVenues); // Créé le marker

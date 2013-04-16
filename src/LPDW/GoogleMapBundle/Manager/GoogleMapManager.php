@@ -14,18 +14,22 @@ use Ivory\GoogleMapBundle\IvoryGoogleMapBundle,
     Ivory\GoogleMap\Overlays\Marker,
     Ivory\GoogleMap\Overlays\MarkerImage,
     Ivory\GoogleMap\Overlays\InfoWindow,
-    Ivory\GoogleMap\Overlays\Animation;
+    Ivory\GoogleMap\Overlays\Animation,
+    Ivory\GoogleMap\Events\MouseEvent;
+
 
 class GoogleMapManager
 {
 
     protected $_oMap;
 
-    public function __construct(Map $_oMap){
+    public function __construct(Map $_oMap)
+    {
         $this->_oMap = $_oMap;
     }
 
-    public function buildMap($_iLatitude, $_iLongitude){
+    public function buildMap($_iLatitude, $_iLongitude)
+    {
 
         $_oMap = $this->_oMap;
 
@@ -59,7 +63,8 @@ class GoogleMapManager
         return $_oMap;
     }
 
-    public function createMarker($_aVenue, $_mStationMarker=false){
+    public function createMarker($_aVenue, $_mStationMarker=false)
+    {
 
         $_oMarker = new Marker();
 
@@ -90,22 +95,23 @@ class GoogleMapManager
         return $_oMarker;
     }
 
-    public function createInfoWindow($_aInfosContent){
-
+    public function createInfoWindow($_aInfosContent)
+    {
         $_oInfoWindow = new InfoWindow();
 
         // Configure les options de la fenêtre d'infos
         $_oInfoWindow->setPrefixJavascriptVariable('info_window_');
         $_oInfoWindow->setPosition(0, 0, true);
         $_oInfoWindow->setPixelOffset(1.1, 2.1, 'px', 'pt');
-    // A CONTINUER !!!
-        var $_sContent = "<div class='infowindow'>"+
-                            "<h4>$_aInfosContent['']</h4>"+
-                            "{% if Venue.address is defined %}<span>{{ Venue.address }}</span><br>{% endif %}"+
-                            "{% if Venue.postalCode is defined %}<span>{{ Venue.postalCode }}</span><br>{% endif %}"+
-                            "{% if Venue.city is defined %}<span>{{ Venue.city }}</span><br>{% endif %}"+
-                            "{% if Venue.state is defined %}<span>{{ Venue.state }}, {{ Venue.country }}</span><br>{% endif %}"+
-                            "{% if Venue.distance is defined %}<span>Distance : {{ Venue.distance }} mètres</span>{% endif %}"+
+
+        // A CONTINUER !!!
+        $_sContent = "<div class='infowindow'>".
+                            "<h4>".$_aInfosContent['name']."</h4>".
+                            "<span>".$_aInfosContent['address']."</span><br>".
+                            "<span>".$_aInfosContent['postalCode']."</span><br>".
+                            "<span>".$_aInfosContent['city']."</span><br>".
+                            "<span>".$_aInfosContent['state'].",".$_aInfosContent['country']."</span><br>".
+                            "<span>Distance : ".$_aInfosContent['distance']." mètres</span><br>".
                          "</div>";
 
         $_oInfoWindow->setContent($_sContent);
