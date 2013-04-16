@@ -26,4 +26,4 @@ composer.phar
 /app/config/parameters.ini
 
 # Sass
-.sass-cache/*
+web/Resources/foundation/.sass-cache/*

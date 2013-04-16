@@ -17,7 +17,7 @@ class PositionController extends Controller
      * Rend le formulaire de recherche d'une gare dans la vue, traite les données s'il est soumis
      *
      * @Route("/", name="lpdw_search")
-     * @Template("LPDWClientBundle:Default:index.html.twig")
+     * @Template("LPDWClientBundle:Client:index.html.twig")
      */
     public function accueilAction(Request $_oRequest)
     {

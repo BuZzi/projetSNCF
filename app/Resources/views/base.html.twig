@@ -9,8 +9,8 @@
 
             {% block stylesheets %}
                 <link rel="stylesheet" type="text/css" href="{{ asset('Resources/public/css/style.css') }}" />
-                <link rel="stylesheet" type="text/css" href="{{ asset('Resources/bootstrap/css/bootstrap.css') }}" />
-                <link rel="stylesheet" type="text/css" href="{{ asset('Resources/bootstrap/css/responsive.css') }}" />
+                <link rel="stylesheet" type="text/css" href="{{ asset('Resources/foundation/stylesheets/app.css') }}" />
+                <link rel="stylesheet" type="text/css" href="{{ asset('Resources/foundation/stylesheets/normalize.css') }}" />
             {% endblock %}
 
             <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -47,7 +47,7 @@
             <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
             <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
             <script type="text/javascript" src="{{ asset('Resources/public/js/jquery.min.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('Resources/bootstrap/js/bootstrap-alert.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('Resources/foundation/javascripts/foundation/foundation.alerts.js') }}"></script>
         {% endblock %}
         <!-- End Javascript -->
 
