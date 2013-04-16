@@ -49,9 +49,12 @@
             <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
             <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
             <script type="text/javascript" src="{{ asset('Resources/foundation/javascripts/vendor/jquery.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('Resources/foundation/javascripts/vendor/zepto.js') }}"></script>
             <script type="text/javascript" src="{{ asset('Resources/foundation/javascripts/foundation/foundation.js') }}"></script>
             <script type="text/javascript" src="{{ asset('Resources/foundation/javascripts/foundation/foundation.alerts.js') }}"></script>
+            <script>
+                // initialize foundation's javascript
+                $(document).foundation();
+            </script>
         {% endblock %}
         <!-- End Javascript -->
 
