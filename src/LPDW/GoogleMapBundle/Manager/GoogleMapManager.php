@@ -101,25 +101,25 @@ class GoogleMapManager
 
         // Configure les options de la fenêtre d'infos
         $_oInfoWindow->setPrefixJavascriptVariable('info_window_');
-        $_oInfoWindow->setPosition(0, 0, true);
-        $_oInfoWindow->setPixelOffset(1.1, 2.1, 'px', 'pt');
+        //$_oInfoWindow->setPosition(0, 0, true);
+        //$_oInfoWindow->setPixelOffset(1.1, 2.1, 'px', 'pt');
 
-        // A CONTINUER !!!
+        // HTML
         $_sContent = "<div class='infowindow'>".
-                            "<h4>".$_aInfosContent['name']."</h4>".
-                            "<span>".$_aInfosContent['address']."</span><br>".
-                            "<span>".$_aInfosContent['postalCode']."</span><br>".
-                            "<span>".$_aInfosContent['city']."</span><br>".
-                            "<span>".$_aInfosContent['state'].",".$_aInfosContent['country']."</span><br>".
-                            "<span>Distance : ".$_aInfosContent['distance']." mètres</span><br>".
-                         "</div>";
+                        "<h4>".$_aInfosContent['name']."</h4>".
+                        "<span>".$_aInfosContent['address']."</span><br>".
+                        "<span>".$_aInfosContent['postalCode']."</span><br>".
+                        "<span>".$_aInfosContent['city']."</span><br>".
+                        "<span>".$_aInfosContent['state'].",".$_aInfosContent['country']."</span><br>".
+                        "<span>Distance : ".$_aInfosContent['distance']." mètres</span><br>".
+                     "</div>";
 
         $_oInfoWindow->setContent($_sContent);
 
-        $_oInfoWindow->setOpen(false);
-        $_oInfoWindow->setAutoOpen(true);
+        //$_oInfoWindow->setOpen(false);
+        //$_oInfoWindow->setAutoOpen(true);
         $_oInfoWindow->setOpenEvent(MouseEvent::CLICK);
-        $_oInfoWindow->setAutoClose(false);
+        $_oInfoWindow->setAutoClose(true);
         $_oInfoWindow->setOptions(array(
             'disableAutoPan' => true,
             'zIndex'         => 10,
