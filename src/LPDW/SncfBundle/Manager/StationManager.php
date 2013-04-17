@@ -14,7 +14,6 @@ use LPDW\SncfBundle\Entity\Station;
 
 class StationManager extends BaseManager
 {
-
     protected $em;
 
     public function __construct(EntityManager $em)
@@ -37,7 +36,6 @@ class StationManager extends BaseManager
      */
     public function getAroundStation($_mLatitude, $_mLongitude)
     {
-
         // Formule qui trouve les points alentours en fonction du couple latitude-longitude
         $_sFormule = "(6366 * acos(cos(radians($_mLatitude))*cos(radians(`latitude`))*cos(radians(`longitude`) -radians($_mLongitude))+sin(radians($_mLatitude))*sin(radians(`latitude`))))";
 
@@ -53,7 +51,6 @@ class StationManager extends BaseManager
         $_aListStations = $statement->fetchAll();
 
         return $_aListStations;
-
     }
 
 
@@ -63,7 +60,6 @@ class StationManager extends BaseManager
      */
     public function findStationsByName($_sNameStation)
     {
-
         $_oQuery = $this->em->createQuery(
                                 "SELECT s
                                  FROM LPDWSncfBundle:Station s
@@ -81,10 +77,5 @@ class StationManager extends BaseManager
         }
 
         return $_aListStations;
-
     }
-
-
-
-
 }

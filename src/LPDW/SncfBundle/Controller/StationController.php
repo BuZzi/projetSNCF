@@ -16,12 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class StationController extends Controller
 {
-
     public function listAction($_mLatitude, $_mLongitude)
     {
-
     }
-
-
-
 }

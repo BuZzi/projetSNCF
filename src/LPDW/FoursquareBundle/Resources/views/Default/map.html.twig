@@ -8,14 +8,11 @@
 {% endblock %}
 
  {% block body %}
-     <a class="btn btn-large btn-block back-button" href="{{ path('lpdw_categories', {'name': stationVenue.name, 'latitude': stationVenue.latitude, 'longitude': stationVenue.longitude}) }}">
-         Retour
-     </a>
+     {{ parent() }}
      {% block map %}
          {{ google_map_container(googleMap) }}
      {% endblock %}
  {% endblock %}
-
 
 {% block footer %}
 {% endblock %}
@@ -23,5 +20,4 @@
 {% block javascripts %}
     {{ parent() }}
     {{ google_map_js(googleMap) }}
-
 {% endblock %}

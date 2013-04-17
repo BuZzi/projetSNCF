@@ -12,7 +12,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class SearchStationType extends AbstractType
 {
-
     /**
      * Ajoute les champs au formulaire
      *
@@ -25,7 +24,7 @@ class SearchStationType extends AbstractType
             ->add('name', 'text', array(
                 'attr'=> array(
                         'placeholder' => 'Nom de la gare',
-                        'class' => 'span10'
+                        'class' => 'large-12 small-12 columns'
                     )
             ));
     }
@@ -34,5 +33,4 @@ class SearchStationType extends AbstractType
     {
         return 'station_search';
     }
-
 }

@@ -24,12 +24,10 @@ class PositionController extends Controller
         $_oStation = new Station();
         $_oForm = $this->createForm(new SearchStationType(), $_oStation);
 
-        if($_oRequest->isMethod('POST'))
-        {
+        if($_oRequest->isMethod('POST')){
             $_oForm->bind($_oRequest);
 
-            if($_oForm->isValid())
-            {
+            if($_oForm->isValid()){
                 // récupère la valeur du champ 'nom de la gare' du formulaire
                 $_sNameStation = $_oForm['name']->getData();
 
@@ -38,8 +36,7 @@ class PositionController extends Controller
 
 
                 // Si trop de résultats trouvés, demande à l'utilisateur d'affiner sa recherche
-                if ($_aListStations ===  false)
-                {
+                if ($_aListStations ===  false){
                     $_sErrorTxt = 'Trop de résultats ont été trouvés, veuillez affiner votre recherche';
                     return array(
                         'errorTxt' => $_sErrorTxt,
@@ -48,17 +45,17 @@ class PositionController extends Controller
                 }
 
                 // Si pas de gares correspondantes trouvé
-                if (!$_aListStations)
-                {
+                if(!$_aListStations){
                     $_sErrorTxt = 'Aucune gare correspondante à votre recherche n\'a été trouvée';
                     return array(
                         'errorTxt' => $_sErrorTxt,
-                        'form' => $_oForm->createView(),
+                        'form'     => $_oForm->createView(),
                     );
                 }
                 return array(
+                    'station'  => $_sNameStation,
                     'stations' => $_aListStations,
-                    'form' => $_oForm->createView(),
+                    'form'     => $_oForm->createView(),
                 );
             }
         }
@@ -84,13 +81,11 @@ class PositionController extends Controller
         $_aListStations = $this->get('lpdw_sncf.station_manager')->getAroundStation($_mLatitude, $_mLongitude);
 
         // Si aucune stations n' été trouvée, retourne une erreur
-        if (!$_aListStations)
-        {
+        if (!$_aListStations){
             throw $this->createNotFoundException('Pas de gares à l\'horizon. Utiliser plutôt le formulaire');
         }
 
-        foreach($_aListStations as $_iKey=> &$_aStation)
-        {
+        foreach($_aListStations as $_iKey=> &$_aStation){
             $_aStation = $this->getDoctrine()
                 ->getRepository('LPDWSncfBundle:Station')
                 ->find($_aStation['id']);

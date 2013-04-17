@@ -10,8 +10,10 @@
             {% block stylesheets %}
                 <link rel="stylesheet" type="text/css" href="{{ asset('Resources/public/stylesheets/style.css') }}" />
                 <link rel="stylesheet" type="text/css" href="{{ asset('Resources/foundation/stylesheets/app.css') }}" />
-
                 <link rel="stylesheet" type="text/css" href="{{ asset('Resources/foundation/stylesheets/flat-ui.css') }}" />
+                {% stylesheets '@LPDWClientBundle/Resources/public/css/*' filter='cssrewrite' %}
+                    <link rel="stylesheet" href="{{ asset_url }}" />
+                {% endstylesheets %}
             {% endblock %}
 
             <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -23,20 +25,27 @@
     <body>
         <!-- Content -->
         {% block body %}
+            <!-- Topnav -->
+            <header id="topnav">
+                <!-- Google map image logo + title -->
+                <div class="row">
+                    <div id="logo" class="large-8 small-12 columns">
+                        <a href="{{ path('lpdw_search') }}"><figure id="google-map-logo"></figure></a>
+                        <h2 id="title">Where ?</h2>
+                    </div>
+                </div>
+                <!-- End google map image logo + title -->
+            </header>
+            <!-- end Topnav -->
         {% endblock %}
         <!-- End Content -->
 
         <!-- Footer -->
         {% block footer %}
-            <footer class="row">
-                <div class="twelve columns">
-                    <hr />
-                    <div class="row">
-                        <div class="six columns hidden-phone">
-                        </div>
-                        <div class="six columns">
-                            <p>&copy; Copyright Jaguar Gorgone pour les puristes </p>
-                        </div>
+            <footer id="basefooter">
+                <div class="row">
+                    <div class="small-12 large-12 columns">
+                        <p class="text-center">&copy; Copyright Jaguar Gorgone pour les puristes </p>
                     </div>
                 </div>
             </footer>

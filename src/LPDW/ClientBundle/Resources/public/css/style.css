@@ -3,29 +3,49 @@ label{
     display: none;
 }
 
-/** technique utilisée : http://voormedia.com/blog/2012/11/responsive-background-images-with-fixed-or-fluid-aspect-ratios **/
-div#logo {
-    margin: 0 auto;
-    max-width: 150px;  /* Taille de l'image de fond */
+/* TOPNAV */
+header#topnav {
+    background-color: #363636;
+    height: 70px;
+    width: 100%;
 }
 
 figure#google-map-logo {
-    padding-top: 68.66%;
-    height: 120px;
-    background-image: url('../images/g_map.png');
-    background-size: cover;
-    moz-background-size: cover;  /* Firefox compatibility */
-    background-position: center;  /* Internet Explorer 7/8 */
+    background-image: url('../images/logo.png');
+    float: left;
+    height: 59px;
+    margin: 5px;
+    width: 60px;
 }
 
-div.formulaire-recherche{
+#title {
+    color: #ffffff;
+    float: left;
+    margin-top: 20px;
+    width: 110px;
+}
+
+.circle-button {
+    background:#34495E url('../images/marker.png') no-repeat;
+    background-position: center 35%;
+    border-radius: 50px;
+    color:#fff;
+    display: inline-block;
+    height:100px;
+    font-size: 16px;
+    line-height: 140px;
     text-align: center;
+    text-decoration: none;
+    width: 101px;
 }
 
 input[type="submit"]{
     width: 100%;
 }
 
-div.search-results{
-    margin-top: 15px;
+footer#basefooter {
+    background-color: #363636;
+    height: 40px;
+    margin-top: 20px;
+    width: 100%;
 }

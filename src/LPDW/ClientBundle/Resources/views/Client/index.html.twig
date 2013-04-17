@@ -1,75 +1,67 @@
 {% extends '::base.html.twig' %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    {% stylesheets '@LPDWClientBundle/Resources/public/css/*' filter='cssrewrite' %}
-        <link rel="stylesheet" href="{{ asset_url }}" />
-    {% endstylesheets %}
-{% endblock %}
-
 {% block body %}
-    <!-- Google map image logo -->
+    {{ parent() }}
     <div class="row">
-        <h1 class="large-6 small-8 columns">Where ?</h1>
-        <div id="logo" class="large-6 small-4 columns">
-            <figure id="google-map-logo"></figure>
-        </div>
-        <hr />
-    </div>
-    <!-- End google map image logo -->
-
-    <!-- Div qui contient les géolocalisations de l'utilisateur (à enlever après) une fois le bouton 'Trouve moi' cliqué -->
-    <div class="row" id="infosposition">
-        <div class="twelve columns">
-            <h4 style="text-align: center;">
+        <div class="large-6 small-12 columns">
+            <h4 class="large-12 small-12 columns">
                 <i class="foundicon-flag"></i>
                 Trouver les gares à proximité de ma position
             </h4>
-            <button class="twelve columns btn btn-large btn-block" id="findMe">
-                Trouver
-            </button>
+            <div class="large-12 small-12 columns" style="text-align: center;">
+                <a href="#" class="large-centered small-centered circle-button" id="findMe">
+                    Trouver
+                </a>
+            </div>
         </div>
+        <!-- Div qui contient les gares proches de l'utilisateur (à enlever après) une fois le bouton 'Trouve moi' cliqué -->
+        <div id="infosposition" class="large-6 small-12 columns"></div>
     </div>
-
-    <!-- Formulaire Recherche -->
-    {% if form is defined %}
-        <hr />
-        <div class="row">
-            <div class="twelve columns formulaire-recherche">
-                <h4 style="text-align: center;"><i class="foundicon-search"></i>Je recherche une gare en particulier </h4>
-                <form action="{{ path('lpdw_search') }}" method="post"  {{ form_enctype(form) }}>
-                    {{ form_widget(form) }}
-                    <input class="twelve columns btn btn-large" type="submit" value="Rechercher"/>
-                </form>
+    <div class="row">
+        <div class="large-12 small-12 columns formulaire-recherche">
+            <hr/>
+            <!-- Formulaire Recherche -->
+            {% if form is defined %}
+                <div class="large-6 small-12 columns">
+                    <h4 class="large-12 small-12 columns">
+                        <i class="foundicon-search"></i>
+                        Je recherche une gare en particulier
+                    </h4>
+                    <form action="{{ path('lpdw_search') }}" method="post"  {{ form_enctype(form) }}>
+                        {{ form_widget(form) }}
+                        <input class="large-12 small-12 columns btn btn-large" type="submit" value="Rechercher"/>
+                    </form>
+                </div>
+            {% endif %}
+            <div class="large-6 small-12 columns">
+                {% if errorTxt is defined %}
+                    <!-- Si une erreur est survenue lors de la recherche (formulaire soumis) -->
+                    <div data-alert class="large-12 small-12 alert-box alert">
+                        {{ errorTxt }}
+                        <a class="close" href="#">&times;</a>
+                    </div>
+                {% endif %}
+                {% if stations is defined %}
+                    <!-- Si le formulaire a été soumis et des résultats ont été envoyés depuis le controlleur -->
+                    <div class="large-12 small-12 columns">
+                        <h4>
+                            <i class="foundicon-search"></i>
+                            Gares correspondantes pour "{{ station }}"
+                        </h4>
+                        <ul class="nav nav-list">
+                            {% for station in stations %}
+                                <li>
+                                    <a href="{{ path('lpdw_categories', {'name': station.name, 'latitude': station.latitude, 'longitude': station.longitude}) }}">
+                                        {{ station.name }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
         </div>
-    {% endif %}
-    <!-- End Formulaire Recherche -->
-
-    <div class="row search-results">
-        {% if errorTxt is defined %}
-            <!-- Si une erreur est survenue lors de la recherche (formulaire soumis) -->
-            <div data-alert class="twelve columns alert-box alert">
-                {{ errorTxt }}
-                <a class="close" href="#">&times;</a>
-            </div>
-        {% endif %}
-
-        {% if stations is defined %}
-            <!-- Si le formulaire a été soumis et des résultats ont été envoyés depuis le controlleur -->
-            <div class="twelve columns">
-                <h4>Gares correspondantes à votre recherche</h4>
-                <ul class="nav nav-list">
-                    {% for station in stations %}
-                        <li>
-                            <a href="{{ path('lpdw_categories', {'name': station.name, 'latitude': station.latitude, 'longitude': station.longitude}) }}">
-                                {{ station.name }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        {% endif %}
+        <!-- End Formulaire Recherche -->
     </div>
 {% endblock %}
 
