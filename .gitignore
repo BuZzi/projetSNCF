@@ -23,7 +23,7 @@ composer.phar
 /app/cache/*
 /app/logs/*
 /vendor/
-/app/config/parameters.ini
+/app/config/parameters.yml
 
 # Sass
 web/Resources/foundation/.sass-cache/*
