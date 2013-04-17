@@ -21,7 +21,8 @@
         "kriswallsmith/assetic": "1.1.*@dev",
         "egeloen/google-map-bundle": "*",
         "willdurand/geocoder": "1.4.0",
-        "friendsofsymfony/jsrouting-bundle": "1.1.*"
+        "friendsofsymfony/jsrouting-bundle": "1.1.*",
+        "endroid/twitter-bundle": "1.1.*"
     },
     "scripts": {
         "post-install-cmd": [

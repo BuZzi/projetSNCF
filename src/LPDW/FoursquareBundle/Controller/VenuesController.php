@@ -170,9 +170,11 @@ class VenuesController extends Controller
             $_oInfoWindow = $_oMap->createInfoWindow($_aVenues); // créé l'infoWindow
 
             $_oMarker->setInfoWindow($_oInfoWindow); // ajoute l'infoWindow au marker
-
             $_oFinalMap->addMarker($_oMarker); // ajoute le marker à la carte
-            $_oFinalMap->addInfoWindow($_oInfoWindow); // ajoute l'infoWindow à la carte
+
+            //var_dump($_oFinalMap);
+
+
 
         }
 

@@ -25,6 +25,8 @@ class AppKernel extends Kernel
             new LPDW\GoogleMapBundle\LPDWGoogleMapBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
+            new Endroid\Bundle\TwitterBundle\EndroidTwitterBundle(),
+            new LPDW\TwitterBundle\LPDWTwitterBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

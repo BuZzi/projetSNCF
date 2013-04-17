@@ -16,3 +16,8 @@ parameters:
 
     foursquare_client_key:        MMZGMHS5AQXN2JUERKNPOGV4MFOZQ4RBZPVDT3HVKA4CH5FM
     foursquare_client_secret:     WD3VGUTUIG0ZSXJDKOV2ZT0T5IF01KPCJLMMTUZ31VD03BLY
+
+    twitter_consumer_key: yyW8QQ60eKbf2wKkKOi0Jg
+    twitter_consumer_secret: bbW4IvRxd0rKWq0lUYuTGpnudtiEQmfV6QUkJJWTrU
+    twitter_access_token: 847726519-pNms73ZpOnQPX7k4q75a5H1qmsL3MhxPvIceYXYy
+    twitter_access_token_secret: y15BX4LdVyyNs9KZR5o7e8LrCeV0ka15JPVuLiWSjc

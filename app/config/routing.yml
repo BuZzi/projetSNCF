@@ -1,3 +1,8 @@
+lpdw_twitter:
+    resource: "@LPDWTwitterBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 lpdw_google_map:
     resource: "@LPDWGoogleMapBundle/Controller/"
     type:     annotation
@@ -20,6 +25,11 @@ lpdw_client:
 
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+EndroidTwitterBundle:
+    resource:   "@EndroidTwitterBundle/Controller/"
+    type:       annotation
+    prefix:     /twitterapi
 
 # Internal routing configuration to handle ESI
 # ****** WARNING ******
