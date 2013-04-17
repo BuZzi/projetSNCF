@@ -41,6 +41,8 @@ function successCallback(position)
             "lng" : position.coords.longitude
         },
         success: function(data){
+            // change l'état du bouton 'trouve moi'
+            $('#findMe').addClass('active');
             // Affiche les données recus du controlleur
             document.getElementById("infosposition").innerHTML = data;
         }

@@ -39,6 +39,11 @@ figure#google-map-logo {
     width: 101px;
 }
 
+.active {
+    color: #2ECC71;
+    text-decoration: none;
+}
+
 input[type="submit"]{
     width: 100%;
 }

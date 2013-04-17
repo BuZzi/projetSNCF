@@ -274,7 +274,7 @@ body {
 /* line 6, ../sass/modules/_type.sass */
 a {
   color: #1abc9c;
-  text-decoration: underline;
+  text-decoration: none;
   -webkit-transition: 0.25s;
   -moz-transition: 0.25s;
   -o-transition: 0.25s;
@@ -3316,6 +3316,24 @@ body.vjs-full-window {
     background-image: url("../images/login/imac-2x.png");
   }
 }
+/* line 1, ../sass/modules/_list.sass */
+li {
+  font-size: 16px;
+}
+/* line 3, ../sass/modules/_list.sass */
+li:hover {
+  color: #81eed8;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -o-transition: 0.25s;
+  transition: 0.25s;
+  -webkit-backface-visibility: hidden;
+}
+/* line 6, ../sass/modules/_list.sass */
+li:active {
+  color: #81eed8;
+}
+
 /* line 10, ../sass/_spaces.sass */
 .ptn, .pvn, .pan {
   padding-top: 0;
