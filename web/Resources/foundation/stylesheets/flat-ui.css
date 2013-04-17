@@ -2564,26 +2564,27 @@ footer p {
   color: white;
   font-size: 15px;
   line-height: 40px;
+  margin: 0;
 }
 
-/* line 17, ../sass/modules/_footer.sass */
+/* line 18, ../sass/modules/_footer.sass */
 .footer-title {
   margin: 0 0 22px;
   padding-top: 21px;
 }
 
-/* line 21, ../sass/modules/_footer.sass */
+/* line 22, ../sass/modules/_footer.sass */
 .footer-brand {
   display: block;
   margin-bottom: 26px;
   width: 220px;
 }
-/* line 26, ../sass/modules/_footer.sass */
+/* line 27, ../sass/modules/_footer.sass */
 .footer-brand img {
   width: 216px;
 }
 
-/* line 30, ../sass/modules/_footer.sass */
+/* line 31, ../sass/modules/_footer.sass */
 .footer-banner {
   background-color: #1abc9c;
   color: #cff3ec;
@@ -2591,31 +2592,31 @@ footer p {
   min-height: 286px;
   padding: 0 30px 30px;
 }
-/* line 37, ../sass/modules/_footer.sass */
+/* line 38, ../sass/modules/_footer.sass */
 .footer-banner .footer-title {
   color: white;
 }
-/* line 40, ../sass/modules/_footer.sass */
+/* line 41, ../sass/modules/_footer.sass */
 .footer-banner a {
   color: #cff3ec;
   text-decoration: underline;
 }
-/* line 43, ../sass/modules/_footer.sass */
+/* line 44, ../sass/modules/_footer.sass */
 .footer-banner a:hover {
   text-decoration: none;
 }
-/* line 46, ../sass/modules/_footer.sass */
+/* line 47, ../sass/modules/_footer.sass */
 .footer-banner ul {
   list-style-type: none;
   margin: 0 0 26px;
 }
-/* line 50, ../sass/modules/_footer.sass */
+/* line 51, ../sass/modules/_footer.sass */
 .footer-banner ul li {
   border-top: 1px solid #1bc6a5;
   line-height: 19px;
   padding: 6px 0;
 }
-/* line 54, ../sass/modules/_footer.sass */
+/* line 55, ../sass/modules/_footer.sass */
 .footer-banner ul li:first-child {
   border-top: none;
   padding-top: 1px;
@@ -3318,7 +3319,7 @@ body.vjs-full-window {
 }
 /* line 1, ../sass/modules/_list.sass */
 li {
-  font-size: 16px;
+  font-size: 17px;
 }
 /* line 3, ../sass/modules/_list.sass */
 li:hover {
