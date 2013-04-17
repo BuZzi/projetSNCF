@@ -11,18 +11,22 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/connection")
+     * @Route("/connection", name="lpdw_twitterConnection")
      * @Template("LPDWTwitterBundle:Default:index.html.twig")
      */
-    public function connectionAction($name)
+    public function connectionAction()
     {
-        $twitter = $this->get('endroid.twitter');
+        $_oTwitter = $this->get('endroid.twitter');
 
-        // Retrieve the user's timeline
-        $tweets = $twitter->getTimeline(array(
-            'count' => 5
-        ));
+        $_aParameters = array(
+            'oauth_callback' => 'http://where.etuwebdev.fr'
+        );
 
-        return array('tweets' => $tweets);
+        // use the generic query method
+        $response = $_oTwitter->query('oauth/request_token', 'POST', 'json', $_aParameters);
+        $test = json_decode($response->getContent());
+
+        var_dump($test);
+        return array();
     }
 }
