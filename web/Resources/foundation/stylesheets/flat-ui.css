@@ -3336,10 +3336,12 @@ li:active {
 /* line 10, ../sass/modules/_list.sass */
 ul.categories-list {
   list-style: none;
+  display: block;
   margin: 0 auto;
-  width: 100%;
+  padding: 0;
+  width: 320px;
 }
-/* line 14, ../sass/modules/_list.sass */
+/* line 16, ../sass/modules/_list.sass */
 ul.categories-list li {
   background-color: #e6f0ee;
   border-radius: 6px;
@@ -3347,15 +3349,15 @@ ul.categories-list li {
   float: left;
   height: 90px;
   margin: 5px;
-  width: 90px;
+  width: 95px;
 }
-/* line 22, ../sass/modules/_list.sass */
+/* line 24, ../sass/modules/_list.sass */
 ul.categories-list li a {
   display: block;
   height: 100%;
   width: 100%;
 }
-/* line 26, ../sass/modules/_list.sass */
+/* line 28, ../sass/modules/_list.sass */
 ul.categories-list li a img {
   margin-left: 14px;
   margin-top: 14px;

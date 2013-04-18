@@ -14,7 +14,7 @@ label{
 }
 
 #content {
-    padding-bottom: 60px; /* height + margin-top of footer */
+    padding-bottom: 50px; /* height + margin-top of footer */
 }
 
 /* TOPNAV */
@@ -58,13 +58,13 @@ figure#google-map-logo {
     text-decoration: none;
 }
 
-input[type="submit"]{
+input[type="submit"] {
     width: 100%;
 }
 
 /* Powered By foursquare bundle */
 #powered-foursquare {
-    height: auto
+    height: auto;
     width: auto;
 }
 
@@ -72,7 +72,7 @@ footer#basefooter {
     background-color: #363636;
     bottom: 0;
     height: 40px;
-    margin-top: 20px;
+    margin-top: 10px;
     position: absolute;
     width: 100%;
 }
