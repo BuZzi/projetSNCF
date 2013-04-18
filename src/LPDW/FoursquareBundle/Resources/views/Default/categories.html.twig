@@ -48,6 +48,20 @@
                 <img id="powered-foursquare" src="https://playfoursquare.s3.amazonaws.com/press/logo/poweredByFoursquare_gray.png" width="400" height="150" alt="foursquare"/>
             </div>
         </div>
+        <div class="row">
+            <!-- LISTES TWEETS -->
+            <div class="small-12 large-6 columns">
+                <h4>Derniers Tweets à cette gare : </h4>
+                {{ dump(tweets) }}
+                <ul>
+                    {% for tweet in tweets %}
+                        <li>
+                            {{ tweet.query }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
 {% endblock %}
 
 
