@@ -21,7 +21,7 @@ class VenuesController extends Controller
     public function categoriesAction($name, $latitude, $longitude)
     {
         // Récupère la clé client et le code secret pour pouvoir requêter dans l'API Foursquare
-        $_sClient_key = $this->container->getParameter('foursquare_client_key');
+        $_sClient_key    = $this->container->getParameter('foursquare_client_key');
         $_sClient_secret = $this->container->getParameter('foursquare_client_secret');
 
         $_oFoursquare = new FoursquareAPI($_sClient_key,$_sClient_secret); // Appel de library FoursquareApi
@@ -30,10 +30,20 @@ class VenuesController extends Controller
         $response = $_oFoursquare->GetPublic("venues/categories"); // On récupère ici la liste des catégories
         $listCategories = json_decode($response);
 
+        $_aNeededCategories = array('Culture et loisirs', 'Manger', 'Extérieur et loisirs', 'Boutiques et services', 'Vie nocturne', 'Établissement universitaire');
+        $_aCategories = array();
+
         //var_dump($listCategories);
-        foreach($listCategories->response->categories as $categories){
-            $_aCategories[] = $categories;
+        foreach($listCategories->response->categories as $categorie){
+            // only get needed categories
+            if(in_array($categorie->name, $_aNeededCategories, false)){
+                $_aCategories[] = $categorie;
+            }
         }
+
+        if(empty($_aCategories))
+            $_aCategories = null;
+
 
         return array(
             'listCategories' => $_aCategories,
@@ -50,12 +60,13 @@ class VenuesController extends Controller
     public function venuesInCategorieAction($name, $latitude, $longitude, $categorie)
     {
         $_aVenues = array();
-        $_oMap = $this->get('lpdw_google_map.google_map_manager');
+        $_oMap    = $this->get('lpdw_google_map.google_map_manager');
 
         // Récupère la clé client et le code secret pour pouvoir requêter dans l'API Foursquare
-        $_sClient_key = $this->container->getParameter('foursquare_client_key');
+        $_sClient_key    = $this->container->getParameter('foursquare_client_key');
         $_sClient_secret = $this->container->getParameter('foursquare_client_secret');
-        $_oFoursquare = new FoursquareAPI($_sClient_key,$_sClient_secret); // Appel de library FoursquareApi
+
+        $_oFoursquare    = new FoursquareAPI($_sClient_key,$_sClient_secret); // Appel de library FoursquareApi
 
         $_aStationVenue = array(
             'name' => $name,
@@ -173,9 +184,6 @@ class VenuesController extends Controller
             $_oFinalMap->addMarker($_oMarker); // ajoute le marker à la carte
 
             //var_dump($_oFinalMap);
-
-
-
         }
 
         return array(

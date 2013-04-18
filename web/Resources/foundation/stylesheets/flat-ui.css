@@ -309,25 +309,23 @@ h2 {
 h3 {
   font-size: 24px;
   font-weight: 700;
-  margin-bottom: 4px;
-  margin-top: 2px;
 }
 
-/* line 31, ../sass/modules/_type.sass */
+/* line 29, ../sass/modules/_type.sass */
 h4 {
   font-size: 18px;
   font-weight: 500;
   margin-top: 4px;
+  margin-bottom: 5px;
 }
 
-/* line 36, ../sass/modules/_type.sass */
+/* line 35, ../sass/modules/_type.sass */
 h5 {
   font-size: 16px;
   font-weight: 500;
-  text-transform: uppercase;
 }
 
-/* line 41, ../sass/modules/_type.sass */
+/* line 39, ../sass/modules/_type.sass */
 h6 {
   font-size: 13px;
   font-weight: 500;
@@ -3333,6 +3331,34 @@ li:hover {
 /* line 6, ../sass/modules/_list.sass */
 li:active {
   color: #81eed8;
+}
+
+/* line 10, ../sass/modules/_list.sass */
+ul.categories-list {
+  list-style: none;
+  margin: 0 auto;
+  width: 100%;
+}
+/* line 14, ../sass/modules/_list.sass */
+ul.categories-list li {
+  background-color: #e6f0ee;
+  border-radius: 6px;
+  display: block;
+  float: left;
+  height: 90px;
+  margin: 5px;
+  width: 90px;
+}
+/* line 22, ../sass/modules/_list.sass */
+ul.categories-list li a {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+/* line 26, ../sass/modules/_list.sass */
+ul.categories-list li a img {
+  margin-left: 14px;
+  margin-top: 14px;
 }
 
 /* line 10, ../sass/_spaces.sass */

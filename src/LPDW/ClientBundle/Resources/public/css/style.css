@@ -1,6 +1,20 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 /* Label caché => placeholder à la place */
 label{
     display: none;
+}
+
+#wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+#content {
+    padding-bottom: 60px; /* height + margin-top of footer */
 }
 
 /* TOPNAV */
@@ -48,9 +62,17 @@ input[type="submit"]{
     width: 100%;
 }
 
+/* Powered By foursquare bundle */
+#powered-foursquare {
+    height: auto
+    width: auto;
+}
+
 footer#basefooter {
     background-color: #363636;
+    bottom: 0;
     height: 40px;
     margin-top: 20px;
+    position: absolute;
     width: 100%;
 }
