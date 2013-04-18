@@ -30,24 +30,27 @@
     </header>
     <!-- end Topnav -->
     <!-- content -->
-    <div id="content">
+    <div id="content" style="padding-bottom: 0; /* pas de footer sur cette page donc pas de pading bottom */">
     {% block map %}
         {{ google_map_container(googleMap) }}
     {% endblock %}
  {% endblock %}
 
 {% block footer %}
-    {{ parent() }}
+    <!-- pas de footer pour que la google map soit plus grande -->
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
         // adapte la hauteur de la google map à la hauteur de l'écran client (moins hauteur du header et du footer)
-        var $_iViewportHeight = document.documentElement.clientHeight - 110;
+        var $_iViewportHeight = document.documentElement.clientHeight - 70;
         var mapcontainer = document.getElementById('map_canvas');
         mapcontainer.style.height = $_iViewportHeight + 'px';
     </script>
     {{ google_map_js(googleMap) }}
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    <script type="text/javascript">
+        // Twitter button
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+    </script>
 {% endblock %}

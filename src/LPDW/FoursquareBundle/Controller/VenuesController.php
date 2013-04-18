@@ -93,20 +93,6 @@ class VenuesController extends Controller
             $_aListVenues = $_aListVenues->items;
         }
 
-       /*
-            $_aVenues[] = array(
-                'name' => $name,
-                'latitude' =>$latitude,
-                'longitude' => $longitude,
-                'address' => $address,
-                'postalCode' => $postalCode,
-                'city' => $city,
-                'state' => $state,
-                'country' => $country,
-                'distance' => $distance,
-            );
-        */
-
         // Construit la carte et affiche les lieux d'intérêt autour de notre position
         $_oFinalMap = $_oMap->buildMap($latitude, $longitude);
 
