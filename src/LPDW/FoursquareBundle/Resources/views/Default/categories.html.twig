@@ -1,30 +1,53 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    {{ parent() }}
-    <div class="row">
-        <div class="large-9 small-12 columns">
-            <h3>
-                <i class="foundicon-flag"></i>
-                {{ nameStation }}
-            </h3>
-
-            <h4>Catégories de lieux autour : </h4>
-
-            <ul class="categories-list">
-                {% for categorie in listCategories %}
-                    <li>
-                        <!-- categorie.icon.prefix = https://foursquare.com/img/categories/{categorieName}/default_ -->
-                        <a href="{{ path('lpdw_venuesincategories', {'name': nameStation, 'latitude': latitude, 'longitude': longitude, 'categorie': categorie.id}) }}">
-                            <img src="{{ categorie.icon.prefix }}64.png" alt="{{ categorie.name }}"/>
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
+    <!-- Topnav -->
+    <header id="topnav">
+        <!-- Google map image logo + title + return button -->
+        <div class="row">
+            <div id="logo" class="large-8 small-10 columns">
+                <a href="{{ path('lpdw_search') }}">
+                    <figure id="google-map-logo"></figure>
+                    <h2 id="title">Where ?</h2>
+                </a>
+            </div>
+            <div class="large-4 small-2 columns">
+                <a class="right btn btn-large btn-block btn-primary back-button"
+                   href="{{ path('lpdw_search') }}">
+                    Retour
+                </a>
+            </div>
         </div>
+        <!-- End google map image logo + title -->
+    </header>
+    <!-- end Topnav -->
+    <!-- content -->
+    <div id="content">
+        <div class="row">
+            <div class="large-9 small-12 columns">
+                <h3>
+                    <i class="foundicon-flag"></i>
+                    {{ nameStation }}
+                </h3>
 
-        <div class="large-3 small-6 columns">
-            <img id="powered-foursquare" src="https://playfoursquare.s3.amazonaws.com/press/logo/poweredByFoursquare_gray.png" width="400" height="150" alt="foursquare"/>
+                <h4>Catégories de lieux autour : </h4>
+
+                <ul class="categories-list">
+                    {% for categorie in listCategories %}
+                        <li>
+                            <!-- categorie.icon.prefix = https://foursquare.com/img/categories/{categorieName}/default_ -->
+                            <a href="{{ path('lpdw_venuesincategories', {'name': nameStation, 'latitude': latitude, 'longitude': longitude, 'categorie': categorie.id}) }}">
+                                <img src="{{ categorie.icon.prefix }}64.png" alt="{{ categorie.name }}"/>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="large-3 small-6 columns">
+                <img id="powered-foursquare" src="https://playfoursquare.s3.amazonaws.com/press/logo/poweredByFoursquare_gray.png" width="400" height="150" alt="foursquare"/>
+            </div>
         </div>
-    </div>
 {% endblock %}
+
+

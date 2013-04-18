@@ -8,13 +8,17 @@ label{
     display: none;
 }
 
+.right {
+    float: right;
+}
+
 #wrapper {
     min-height: 100%;
     position: relative;
 }
 
 #content {
-    padding-bottom: 60px; /* height + margin-top of footer */
+    padding-bottom: 40px; /* height + margin-top of footer */
 }
 
 /* TOPNAV */
@@ -53,20 +57,32 @@ figure#google-map-logo {
     width: 101px;
 }
 
+.back-button {
+    margin-top: 10px;
+    text-align: center;
+    width: 70px;
+}
+
 .active {
     color: #2ECC71;
     text-decoration: none;
 }
 
-input[type="submit"]{
+input[type="submit"] {
     width: 100%;
+}
+
+/* Powered By foursquare logo */
+#powered-foursquare {
+    height: auto;
+    width: auto;
 }
 
 footer#basefooter {
     background-color: #363636;
     bottom: 0;
     height: 40px;
-    margin-top: 20px;
+    margin-top: 0px;
     position: absolute;
     width: 100%;
 }

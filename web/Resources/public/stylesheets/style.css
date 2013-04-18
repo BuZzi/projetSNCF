@@ -215,12 +215,6 @@
     content: "\f02e";
 }
 
-.back-button{
-    margin-bottom: 15px!important; /* override bootstrap for this button class */
-    margin-left: 5px;
-    margin-top: 15px;
-}
-
 .infowindow{
     width: 200px;
 }

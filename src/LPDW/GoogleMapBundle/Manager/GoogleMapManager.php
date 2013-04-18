@@ -54,7 +54,7 @@ class GoogleMapManager
         ));
 
         $_oMap->setStylesheetOptions(array(
-            'width' => '900px',
+            'width' => '100%',
             'height' => '600px'
         ));
 

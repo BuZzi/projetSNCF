@@ -9,17 +9,45 @@
 {% endblock %}
 
  {% block body %}
-     {{ parent() }}
-     {% block map %}
-         {{ google_map_container(googleMap) }}
-     {% endblock %}
+    <!-- Topnav -->
+    <header id="topnav">
+        <!-- Google map image logo + title + return button -->
+        <div class="row">
+            <div id="logo" class="large-8 small-10 columns">
+                <a href="{{ path('lpdw_search') }}">
+                    <figure id="google-map-logo"></figure>
+                    <h2 id="title">Where ?</h2>
+                </a>
+            </div>
+            <div class="large-4 small-2 columns">
+                <a class="right btn btn-large btn-block btn-primary back-button"
+                   href="{{ path('lpdw_categories', {'name': stationVenue.name, 'latitude': stationVenue.latitude, 'longitude': stationVenue.longitude}) }}">
+                    Retour
+                </a>
+            </div>
+        </div>
+        <!-- End google map image logo + title -->
+    </header>
+    <!-- end Topnav -->
+    <!-- content -->
+    <div id="content">
+    {% block map %}
+        {{ google_map_container(googleMap) }}
+    {% endblock %}
  {% endblock %}
 
 {% block footer %}
+    {{ parent() }}
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    <script type="text/javascript">
+        // adapte la hauteur de la google map à la hauteur de l'écran client (moins hauteur du header et du footer)
+        var $_iViewportHeight = document.documentElement.clientHeight - 110;
+        var mapcontainer = document.getElementById('map_canvas');
+        mapcontainer.style.height = $_iViewportHeight + 'px';
+    </script>
     {{ google_map_js(googleMap) }}
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 {% endblock %}
