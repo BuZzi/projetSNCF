@@ -69,9 +69,14 @@ class VenuesController extends Controller
         $_oFoursquare    = new FoursquareAPI($_sClient_key,$_sClient_secret); // Appel de library FoursquareApi
 
         $_aStationVenue = array(
-            'name' => $name,
+            'name' => 'Gare '.$name,
             'latitude' =>$latitude,
             'longitude' => $longitude,
+            'address' => '',
+            'postalCode' => '',
+            'city' => '',
+            'state' => '',
+            'distance' => '0',
         );
 
         $_aParams = array(
@@ -106,9 +111,10 @@ class VenuesController extends Controller
         $_oFinalMap = $_oMap->buildMap($latitude, $longitude);
 
         // Ajoute le marker de la gare où on se trouve
-        $_aVenues['latitude'] = $latitude;
-        $_aVenues['longitude'] = $longitude;
-        $_oMarker = $_oMap->createMarker($_aVenues, true);// Créé le marker de la gare où on se trouve
+        $_oMarker = $_oMap->createMarker($_aStationVenue, true);// Créé le marker de la gare où on se trouve
+        $_oInfoWindow = $_oMap->createInfoWindow($_aStationVenue); // créé l'infoWindow
+
+        $_oMarker->setInfoWindow($_oInfoWindow); // ajoute l'infoWindow au marker
         $_oFinalMap->addMarker($_oMarker);// Ajoute le marker à la carte
 
         // Boucle sur les lieux autour de la gare, créé un marker pour chaque et l'ajoute à la carte
@@ -161,13 +167,6 @@ class VenuesController extends Controller
                 $_aVenues['state'] = $state;
             } else {
                 $_aVenues['state'] = '';
-            }
-
-            if(isset($_oVenues->venue->location->country)){
-                $country = $_oVenues->venue->location->country;
-                $_aVenues['country'] = $country;
-            } else {
-                $_aVenues['country'] = '';
             }
 
             if(isset($_oVenues->venue->location->distance)){

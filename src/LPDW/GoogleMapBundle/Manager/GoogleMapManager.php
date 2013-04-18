@@ -109,8 +109,8 @@ class GoogleMapManager
                         "<h4>".$_aInfosContent['name']."</h4>".
                         "<span>".$_aInfosContent['address']."</span><br>".
                         "<span>".$_aInfosContent['postalCode']." ".$_aInfosContent['city']."</span><br>".
-                        "<span>".$_aInfosContent['state'].", ".$_aInfosContent['country']."</span><br><br>".
-                        "<span>Distance : ".$_aInfosContent['distance']." mètres</span><br>".
+                        "<span>".$_aInfosContent['state']."</span><br><br>".
+                        "<span>Distance : ".$_aInfosContent['distance']." mètres</span><br><br>".
                         "<span>".
                             "<a href='https://twitter.com/intent/tweet?button_hashtag=appWhere&text=Rejoignez moi à ".urlencode($_aInfosContent['name'].' !')."' class='twitter-hashtag-button sb large twitter'  data-lang='fr' data-size='large' data-count='none'>Tweet</a> Tweet ta position ! ".
                         "</span>".
