@@ -95,8 +95,10 @@ class GoogleMapManager
         return $_oMarker;
     }
 
-    public function createInfoWindow($_aInfosContent)
+    public function createInfoWindow($_aInfosContent, $_sStationName)
     {
+        $_sStationName = str_replace(' ', '-', $_sStationName);
+
         $_oInfoWindow = new InfoWindow();
 
         // Configure les options de la fenêtre d'infos
@@ -112,7 +114,7 @@ class GoogleMapManager
                         "<span>".$_aInfosContent['state']."</span><br><br>".
                         "<span>Distance : ".$_aInfosContent['distance']." mètres</span><br><br>".
                         "<span>".
-                            "<a href='https://twitter.com/intent/tweet?button_hashtag=appWhere&text=Rejoignez moi à ".urlencode($_aInfosContent['name'].' !')."' class='twitter-hashtag-button sb large twitter'  data-lang='fr' data-size='large' data-count='none'>Tweet</a> Tweet ta position ! ".
+                            "<a href='https://twitter.com/intent/tweet?button_hashtag=appWhere&text=Rejoignez moi à ".urlencode($_aInfosContent['name']).' près de la gare '.urlencode($_sStationName).' !'."' class='twitter-hashtag-button sb large twitter'  data-lang='fr' data-size='large' data-count='none'>Tweet</a> Tweet ta position ! ".
                         "</span>".
                     "</div>";
 

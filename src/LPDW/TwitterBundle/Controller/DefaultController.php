@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/connection", name="lpdw_twitterConnection")
+     * @Route("/twitter", name="lpdw_twitter")
      * @Template("LPDWTwitterBundle:Default:index.html.twig")
      */
     public function connectionAction()
@@ -19,14 +19,16 @@ class DefaultController extends Controller
         $_oTwitter = $this->get('endroid.twitter');
 
         $_aParameters = array(
-            'oauth_callback' => 'http://where.etuwebdev.fr'
+            'q' => '#appWhere',
         );
 
         // use the generic query method
-        $response = $_oTwitter->query('oauth/request_token', 'POST', 'json', $_aParameters);
-        $test = json_decode($response->getContent());
+        $_oResponse = $_oTwitter->query('search', 'GET', 'json', $_aParameters);
+        $_oDatas = json_decode($_oResponse->getContent());
 
-        //var_dump($test);
-        return array();
+        var_dump($_oDatas);
+        return array(
+            'tweets' => $_oDatas
+        );
     }
 }

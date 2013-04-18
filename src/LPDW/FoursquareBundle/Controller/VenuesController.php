@@ -41,15 +41,28 @@ class VenuesController extends Controller
             }
         }
 
-        if(empty($_aCategories))
+        if(empty($_aCategories)){
             $_aCategories = null;
+        }
 
+        $_oTwitter = $this->get('endroid.twitter');
+        $_sName = urlencode($name);
+        $_aParameters = array(
+            'q' => '#appWhere '.$_sName,
+        );
+
+        // use the generic query method
+        $_oResponse = $_oTwitter->query('search', 'GET', 'json', $_aParameters);
+        $_oDatas = json_decode($_oResponse->getContent());
+
+        //var_dump($_oDatas);
 
         return array(
             'listCategories' => $_aCategories,
             'nameStation' => $name,
             'latitude' => $latitude,
             'longitude' => $longitude,
+            'tweets' => $_oDatas,
         );
     }
 
@@ -66,11 +79,13 @@ class VenuesController extends Controller
         $_sClient_key    = $this->container->getParameter('foursquare_client_key');
         $_sClient_secret = $this->container->getParameter('foursquare_client_secret');
 
-        $_oFoursquare    = new FoursquareAPI($_sClient_key,$_sClient_secret); // Appel de library FoursquareApi
+        $_oFoursquare = new FoursquareAPI($_sClient_key,$_sClient_secret); // Appel de library FoursquareApi
+
+        $_sStationName = $name;
 
         $_aStationVenue = array(
-            'name' => 'Gare '.$name,
-            'latitude' =>$latitude,
+            'name' => 'Gare '.$_sStationName,
+            'latitude' => $latitude,
             'longitude' => $longitude,
             'address' => '',
             'postalCode' => '',
@@ -98,7 +113,7 @@ class VenuesController extends Controller
 
         // Ajoute le marker de la gare où on se trouve
         $_oMarker = $_oMap->createMarker($_aStationVenue, true);// Créé le marker de la gare où on se trouve
-        $_oInfoWindow = $_oMap->createInfoWindow($_aStationVenue); // créé l'infoWindow
+        $_oInfoWindow = $_oMap->createInfoWindow($_aStationVenue, $_sStationName); // créé l'infoWindow
 
         $_oMarker->setInfoWindow($_oInfoWindow); // ajoute l'infoWindow au marker
         $_oFinalMap->addMarker($_oMarker);// Ajoute le marker à la carte
@@ -163,7 +178,7 @@ class VenuesController extends Controller
             }
 
             $_oMarker = $_oMap->createMarker($_aVenues); // Créé le marker
-            $_oInfoWindow = $_oMap->createInfoWindow($_aVenues); // créé l'infoWindow
+            $_oInfoWindow = $_oMap->createInfoWindow($_aVenues, $_sStationName); // créé l'infoWindow
 
             $_oMarker->setInfoWindow($_oInfoWindow); // ajoute l'infoWindow au marker
             $_oFinalMap->addMarker($_oMarker); // ajoute le marker à la carte
