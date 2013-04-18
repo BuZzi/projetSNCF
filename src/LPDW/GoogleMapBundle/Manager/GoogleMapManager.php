@@ -108,11 +108,11 @@ class GoogleMapManager
         $_sContent = "<div class='infowindow'>".
                         "<h4>".$_aInfosContent['name']."</h4>".
                         "<span>".$_aInfosContent['address']."</span><br>".
-                        "<span>".$_aInfosContent['postalCode']."</span><br>".
-                        "<span>".$_aInfosContent['city']."</span><br>".
-                        "<span>".$_aInfosContent['state'].",".$_aInfosContent['country']."</span><br>".
+                        "<span>".$_aInfosContent['postalCode']." ".$_aInfosContent['city']."</span><br>".
+                        "<span>".$_aInfosContent['state'].", ".$_aInfosContent['country']."</span><br>".
                         "<span>Distance : ".$_aInfosContent['distance']." mètres</span><br>".
-                     "</div>";
+                        "<span><a href='https://twitter.com/intent/tweet?button_hashtag=appWhere' class='twitter-hashtag-button sb large twitter'  data-lang='fr' data-url='http://bit.ly/app-Where?' data-counturl='http://where.etuwebdev.fr' data-size='large' data-count='none' data-text=''>Tweet</a> Tweet ! </span>".
+                    "</div>";
 
         $_oInfoWindow->setContent($_sContent);
 
