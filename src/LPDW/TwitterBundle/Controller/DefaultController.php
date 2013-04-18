@@ -26,7 +26,7 @@ class DefaultController extends Controller
         $response = $_oTwitter->query('oauth/request_token', 'POST', 'json', $_aParameters);
         $test = json_decode($response->getContent());
 
-        var_dump($test);
+        //var_dump($test);
         return array();
     }
 }

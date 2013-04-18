@@ -1,5 +1,16 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-
+    <a href="https://twitter.com/intent/tweet?button_hashtag=appWhere" class="twitter-hashtag-button" data-lang="fr" data-url="http://bit.ly/app-Where?" data-counturl="http://where.etuwebdev.fr" data-size="large" data-count="none" data-text="">Tweet</a>
+    <script>!function(d,s,id){
+                var js,
+                    fjs=d.getElementsByTagName(s)[0];
+                if(!d.getElementById(id)){
+                    js=d.createElement(s);
+                    js.id=id;
+                    js.src="https://platform.twitter.com/widgets.js";
+                    fjs.parentNode.insertBefore(js,fjs);
+                }
+            }(document,"script","twitter-wjs");
+    </script>
 {% endblock %}

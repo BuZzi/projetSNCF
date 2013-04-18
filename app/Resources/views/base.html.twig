@@ -14,6 +14,9 @@
                 {% stylesheets '@LPDWClientBundle/Resources/public/css/*' filter='cssrewrite' %}
                     <link rel="stylesheet" href="{{ asset_url }}" />
                 {% endstylesheets %}
+                {% stylesheets '@LPDWTwitterBundle/Resources/public/css/*' filter='cssrewrite' %}
+                    <link rel="stylesheet" href="{{ asset_url }}" />
+                {% endstylesheets %}
             {% endblock %}
 
             <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
