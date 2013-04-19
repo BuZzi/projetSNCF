@@ -54,6 +54,7 @@ class VenuesController extends Controller
         // use the generic query method
         $_oResponse = $_oTwitter->query('search', 'GET', 'json', $_aParameters);
         $_oDatas = json_decode($_oResponse->getContent());
+        $_aFinalTweets = array();
 
         if(!empty($_oDatas->results)){
             foreach($_oDatas->results as $_oTweet){
@@ -63,14 +64,9 @@ class VenuesController extends Controller
 
                 $_oDateDiff = date_diff($_oTweetDate, $_oToday);
                 
-                if($_oDateDiff->format('%d') == '0'){
+                if($_oDateDiff->format('%d') == '0')
                     $_aFinalTweets[] = $_oTweet;
-                }else{
-                    $_aFinalTweets[] = null;
-                }
             }
-        }else{
-            $_aFinalTweets[0] = null;
         }
 
         return array(

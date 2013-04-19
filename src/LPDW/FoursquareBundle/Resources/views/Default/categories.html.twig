@@ -52,14 +52,22 @@
             <!-- LISTES TWEETS -->
             <div class="small-12 large-6 columns">
                 <h4>Derniers Tweets à cette gare : </h4>
-                {{ dump(tweets) }}
-                <ul>
+                {% if tweets %}
+                <ul class="tweets-list">
                     {% for tweet in tweets %}
                         <li>
-                            {{ tweet.query }}
+                            <img src="{{ tweet.profile_image_url }}" alt="{{ tweet.from_user }}"/>
+                            <div class="text-tweet">
+                                <p class="tweet-user">@{{ tweet.from_user }}</p>
+                                <p>{{ tweet.text }}</p>
+                                <span>{{ tweet.created_at }}</span>
+                            </div>
                         </li>
                     {% endfor %}
                 </ul>
+                {% else %}
+                    <p>Il n'y a pas de tweets</p>
+                {% endif %}
             </div>
         </div>
 {% endblock %}

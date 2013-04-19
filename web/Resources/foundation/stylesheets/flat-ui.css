@@ -3363,6 +3363,56 @@ ul.categories-list li a img {
   margin-top: 14px;
 }
 
+/* line 32, ../sass/modules/_list.sass */
+ul.tweets-list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  width: 320px;
+}
+/* line 37, ../sass/modules/_list.sass */
+ul.tweets-list li:last-child {
+  border-bottom: none;
+}
+/* line 39, ../sass/modules/_list.sass */
+ul.tweets-list li {
+  border-bottom: 1px solid #666666;
+  display: inline-block;
+  height: auto;
+  padding-bottom: 10px;
+  width: 100%;
+}
+/* line 45, ../sass/modules/_list.sass */
+ul.tweets-list li img {
+  float: left;
+  margin-top: 5px;
+  height: 50px;
+  width: 50px;
+}
+/* line 50, ../sass/modules/_list.sass */
+ul.tweets-list li .text-tweet {
+  float: left;
+  margin-left: 10px;
+  width: 260px;
+}
+/* line 54, ../sass/modules/_list.sass */
+ul.tweets-list li .text-tweet p.tweet-user {
+  color: #0084b4;
+}
+/* line 56, ../sass/modules/_list.sass */
+ul.tweets-list li .text-tweet p {
+  float: left;
+  margin: 0;
+}
+/* line 59, ../sass/modules/_list.sass */
+ul.tweets-list li .text-tweet span {
+  float: left;
+  font-size: 11px;
+  font-weight: normal;
+  margin-top: 5px;
+  width: 180px;
+}
+
 /* line 10, ../sass/_spaces.sass */
 .ptn, .pvn, .pan {
   padding-top: 0;
